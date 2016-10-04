@@ -18,10 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('isAdm');
-            $table->integer('idProfessor');
-            $table->integer('isAluno');
-            $table->date('expira');
+            $table->integer('isAdm')->default(0);
+            $table->integer('idProfessor')->default(0);
+            $table->integer('isAluno')->default(0);
+            $table->date('expira')->default('2020-01-01');
             $table->rememberToken();
             $table->timestamps();
         });
