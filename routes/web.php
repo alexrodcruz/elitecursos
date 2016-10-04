@@ -24,7 +24,5 @@ Route::get('/institucional', 'siteController@institucional');
 Route::get('/interno', 'internoController@index');
 
 
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index');
