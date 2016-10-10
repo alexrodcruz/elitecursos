@@ -25,12 +25,13 @@ class CreatePessoasTable extends Migration
             $table->string('fone1',200);
             $table->string('fone2',200);
             $table->string('email')->unique();
+            $table->string('enderecoCep',200);
             $table->string('enderecoRua',200);
             $table->string('enderecoNumero',200);
             $table->string('enderecoBairro',200);
             $table->string('enderecoCidade',200);
             $table->string('enderecoEstado',200);
-            $table->integer('ativo');
+            $table->integer('ativo')->default(1);
             $table->timestamps();
         });
     }

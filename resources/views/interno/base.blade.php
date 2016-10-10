@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('backend/dist/css/AdminLTE.min.css')}}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -36,10 +37,28 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
+
+
+
+    <link rel="stylesheet" href="{{asset('backend/bootstrap/css/bootstrap.min.css')}}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('backend/dist/css/AdminLTE.min.css')}}">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{{asset('backend/dist/css/skins/_all-skins.min.css')}}">
+
+
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-
       <header class="main-header">
         <!-- Logo -->
         <a href="#" class="logo">
@@ -138,86 +157,24 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Pessoa</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Turma</a></li>
+                <li><a href="{{ route('interno.pessoas.index') }}"><i class="fa fa-circle-o"></i> Pessoa</a></li>
+                <li><a href="{{ route('interno.turma.index') }}"><i class="fa fa-circle-o"></i> Turma</a></li>
               </ul>
             </li>
-  
           </ul>
         </section>
         <!-- /.sidebar -->
       </aside>
 
-      <!-- Content Wrapper. Contains page content -->
+
      
-<!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-
-
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
         <!-- Main content -->
         <section class="content">
-
             @yield('conteudo')
-
         </section><!-- /.content -->
-
-
-    </div><!-- /.content-wrapper -->
-
-
-
-
-
-
-
-
-
-
-
- <!--     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-     <!--   <section class="content-header">
-          <h1>
-            Elite Cursos
-            <small>Para nós, o que importa é a sua aprovação!</small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Elite Cursos</li>
-          </ol>
-        </section>
-
-        <!-- Main content -->
-<!--        <section class="content">
-
-
-
-
-          <!-- Main row -->
-<!--          <div class="row">
-            <!-- Left col -->
-            <!-- COLUNA 1-->
-  <!--          <section class="col-lg-7 connectedSortable">
-             
-
-              
-
-    <!--        </section><!-- FIM DA COLUNA 1 -->
-            
-            <!-- COLUNA 2 -->
-<!--            <section class="col-lg-5 connectedSortable">
-
-<!--            
-
-            </section><!-- FIM DA COLUNA 2 -->
-<!--          </div><!-- /.row (main row) -->
-
-<!--        </section><!-- /.content -->
-<!--      </div><!-- /.content-wrapper -->
-
-
-
+      </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
@@ -225,8 +182,7 @@
         </div>
         <strong>Copyright &copy; 2016-2016 <a href="#">SHIFT - Consultoria em Tecnologia</a>.</strong>
       </footer>
-
-     
+    </div>
 
     <!-- jQuery 2.1.4 -->
     <script src="{{asset('backend/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
@@ -265,5 +221,55 @@
     <script src="{{asset('backend/dist/js/pages/dashboard.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('backend/dist/js/demo.js')}}"></script>
+
+
+
+
+    <!-- jQuery 2.1.4 -->
+    <script src="{{asset('backend/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="{{asset('backend/bootstrap/js/bootstrap.min.js')}}"></script>
+    <!-- DataTables -->
+    <script src="{{asset('backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
+
+    <!-- FastClick -->
+    <script src="{{asset('backend/plugins/fastclick/fastclick.min.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{asset('backend/dist/js/app.min.js')}}"></script>
+    <!-- AdminLTE for demo purposes -->
+
+    <script>
+
+
+      $(document).ready(function() {
+        $('#example1').DataTable( {
+          "language": {
+            "lengthMenu": "Mostrar  _MENU_  regristro(s) por página.",
+            "zeroRecords": "Nenhum Registro encontrado.",
+            "info": "Mostrando página _PAGE_ de _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "paginate": {
+              "first":      "Primeira",
+              "last":       "Última",
+              "next":       "Próxima",
+              "previous":   "Anterior"
+            },
+            "search":        "Pesquisar:"
+          }
+        } );
+      } );
+
+
+    </script>
+
+
+
+
+    <!-- page script -->
+
+
+
   </body>
 </html>

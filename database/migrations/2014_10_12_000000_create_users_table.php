@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('isAdm')->default(0);
-            $table->integer('idProfessor')->default(0);
+            $table->integer('isProfessor')->default(0);
             $table->integer('isAluno')->default(0);
             $table->date('expira')->default('2020-01-01');
             $table->rememberToken();

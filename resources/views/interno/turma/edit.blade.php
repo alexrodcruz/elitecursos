@@ -1,0 +1,32 @@
+@extends('interno.base')
+
+@section('conteudo')
+    <section class="content-header">
+        <h1>
+            Editar Turma
+        </h1>
+        <br>
+    </section>
+    <section id="interno_turma_edit">
+        <div class="containers">
+            <div class="box">
+                @if(count($errors)>0)
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                    {!! Form::model($turma, ['route' => ['interno.turma.update', $turma->id], 'method' => 'put', 'id' => 'turma']) !!}
+
+
+                @include('interno.turma.form')
+
+                {!! Form::close() !!}
+
+            </div>
+        </div>
+    </section>
+@stop
