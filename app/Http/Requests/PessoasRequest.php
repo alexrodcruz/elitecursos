@@ -38,6 +38,7 @@ class PessoasRequest extends FormRequest
             'enderecoCidade' => 'required',
             'enderecoEstado' => 'required',
             'email' => 'required'
+
         ];
     }
 

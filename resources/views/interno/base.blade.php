@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="{{asset('backend/plugins/daterangepicker/daterangepicker-bs3.css')}}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+    <!-- SELECT 2 -->
+    <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2.min.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -159,7 +161,13 @@
               <ul class="treeview-menu">
                 <li><a href="{{ route('interno.pessoas.index') }}"><i class="fa fa-circle-o"></i> Pessoa</a></li>
                 <li><a href="{{ route('interno.turma.index') }}"><i class="fa fa-circle-o"></i> Turma</a></li>
+                <li><a href="{{ route('interno.disciplina.index') }}"><i class="fa fa-circle-o"></i> Disciplina</a></li>
               </ul>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-book"></i> <span>Matrícula</span>
+              </a>
             </li>
           </ul>
         </section>
@@ -184,10 +192,6 @@
       </footer>
     </div>
 
-    <!-- jQuery 2.1.4 -->
-    <script src="{{asset('backend/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
       $.widget.bridge('uibutton', $.ui.button);
@@ -230,17 +234,19 @@
     <!-- Bootstrap 3.3.5 -->
     <script src="{{asset('backend/bootstrap/js/bootstrap.min.js')}}"></script>
     <!-- DataTables -->
-    <script src="{{asset('backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('backend/plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
+    ok<script src="{{asset('backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    ok<script src="{{asset('backend/plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
 
     <!-- FastClick -->
     <script src="{{asset('backend/plugins/fastclick/fastclick.min.js')}}"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{asset('backend/plugins/select2/select2.full.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('backend/dist/js/app.min.js')}}"></script>
-    <!-- AdminLTE for demo purposes -->
-
     <script>
 
+      $(".select2").select2();
 
       $(document).ready(function() {
         $('#example1').DataTable( {

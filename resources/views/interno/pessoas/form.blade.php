@@ -32,7 +32,7 @@
             </div>
             <div class="form-group col-md-2">
                 {!! Form::label('orgaoEmissor', 'Orgão Emissor:') !!}
-                {!! Form::text('orgaoEmissor', isset($pessoa->orgaoEmissor) ? $pessoa->orgaoEmissor : NULL, ['class' => 'form-control'    ]) !!}
+                {!! Form::text('orgaoEmissor', isset($pessoa->orgaoEmissor) ? $pessoa->orgaoEmissor : NULL, ['class' => 'form-control', 'onChange' => 'this.value = this.value.toUpperCase()' ]) !!}
             </div>
         </div>
         <div class="row">
@@ -92,22 +92,16 @@
         </div>
         <div class="row">
             <div class="form-group col-md-2">
-                <label>
-                    <input id="isadm" name="isadm" type="checkbox">
-                    Administrador
-                </label>
+                {!! Form::checkbox('isAdm', 1) !!}
+                {!! Form::label('isAdm', 'Administrador') !!}
             </div>
             <div class="form-group col-md-2">
-                <label>
-                    <input id="isprofessor" name="isprofessor" type="checkbox">
-                    Professor
-                </label>
+                {!! Form::checkbox('isProfessor', 1) !!}
+                {!! Form::label('isProfessor', 'Professor') !!}
             </div>
             <div class="form-group col-md-2">
-                <label>
-                    <input id="isaluno" name="isaluno" type="checkbox">
-                    Aluno
-                </label>
+                {!! Form::checkbox('isAluno', 1) !!}
+                {!! Form::label('isAluno', 'Alunos') !!}
             </div>
         </div>
         <div class="box-footer">

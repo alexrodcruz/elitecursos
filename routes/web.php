@@ -37,5 +37,12 @@ Route::post('/interno/turma/salvar', ['as' => 'interno.turma.store', 'uses' => '
 Route::get('/interno/turma/edit/{id}', ['as' => 'interno.turma.edit', 'uses' => 'TurmaController@edit']);
 Route::put('/interno/turma/update/{id}', ['as' => 'interno.turma.update', 'uses' => 'TurmaController@update']);
 
+//GESTÃO DE DISCIPLINAS
+Route::get('/interno/disciplina', ['as' => 'interno.disciplina.index', 'uses' => 'DisciplinaController@index']);
+Route::get('/interno/disciplina/create', ['as' => 'interno.disciplina.create', 'uses' => 'DisciplinaController@create']);
+Route::post('/interno/disciplina/salvar', ['as' => 'interno.disciplina.store', 'uses' => 'DisciplinaController@store']);
+Route::get('/interno/disciplina/edit/{id}', ['as' => 'interno.disciplina.edit', 'uses' => 'DisciplinaController@edit']);
+Route::put('/interno/disciplina/update/{id}', ['as' => 'interno.disciplina.update', 'uses' => 'DisciplinaController@update']);
+
 Auth::routes();
 Route::get('/home', 'HomeController@index');

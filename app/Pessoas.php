@@ -9,22 +9,25 @@ class Pessoas extends Model
     protected $table = 'pessoas';
 
     protected $fillable = [
-                            'NOME',
-                            'SEXO',
-                            'DATANASCIMENTO',
-                            'ESTADOCIVIL',
-                            'CPF',
-                            'RG',
-                            'ORGAOEMISSOR',
-                            'FONE1',
-                            'FONE2',
-                            'EMAIL',
-                            'ENDERECOCEP',
-                            'ENDERECORUA',
-                            'ENDERECONUMERO',
-                            'ENDERECOBAIRRO',
-                            'ENDERECOCIDADE',
-                            'ENDERECOESTADO',
-                            'ATIVO'
+                            'nome',
+                            'sexo',
+                            'dataNascimento',
+                            'estadoCivil',
+                            'cpf',
+                            'rg',
+                            'orgaoEmissor',
+                            'fone1',
+                            'fone2',
+                            'email',
+                            'enderecoCep',
+                            'enderecoRua',
+                            'enderecoNumero',
+                            'enderecoBairro',
+                            'enderecoCidade',
+                            'enderecoEstado',
+                            'isAdm',
+                            'idProfessor',
+                            'isAluno',
+                            'ativo'
                         ];
 }

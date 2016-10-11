@@ -49,7 +49,6 @@ class PessoasController extends Controller
     public function store(PessoasRequest $request)
     {
         $dadosForm = $request->all();
-        $dadosForm['ATIVO'] = '1';
 
         $pessoa = new Pessoas();
 
@@ -60,8 +59,6 @@ class PessoasController extends Controller
         $pessoas['pessoas'] = $dbPessoas::all();
 
         return view('interno.pessoas.index')->with($pessoas);
-
-
     }
 
     /**
@@ -107,9 +104,6 @@ class PessoasController extends Controller
         unset($upd['_method']);
         unset($upd['senha']);
         unset($upd['senha2']);
-        unset($upd['isadm']);
-        unset($upd['isprofessor']);
-        unset($upd['isaluno']);
 
         $dbPessoas->where(['id' => $id])->update($upd);
 

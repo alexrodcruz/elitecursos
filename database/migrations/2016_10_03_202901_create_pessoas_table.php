@@ -31,6 +31,9 @@ class CreatePessoasTable extends Migration
             $table->string('enderecoBairro',200);
             $table->string('enderecoCidade',200);
             $table->string('enderecoEstado',200);
+            $table->integer('isAdm')->default(0);
+            $table->integer('isProfessor')->default(0);
+            $table->integer('isAluno')->default(0);
             $table->integer('ativo')->default(1);
             $table->timestamps();
         });

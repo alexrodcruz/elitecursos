@@ -36,18 +36,15 @@ class TurmaController extends Controller
 
     public function store(TurmaRequest $request)
     {
+        $dbTurma = new Turma();
+
         $dadosForm = $request->all();
 
-        $turma = new Turma();
-
-        $turma->create($dadosForm);
-
-        $dbTurma = new Turma();
+        $dbTurma->create($dadosForm);
 
         $turma['turma'] = $dbTurma::all();
 
         return view('interno.turma.index')->with($turma);
-
     }
 
     public function edit($id)
@@ -57,6 +54,7 @@ class TurmaController extends Controller
         $turma = $dbTurma->find($id);
 
         return view("interno.turma.edit", compact("turma"));
+
     }
 
     public function update(TurmaRequest $request, $id)
