@@ -244,9 +244,19 @@
     <script src="{{asset('backend/plugins/select2/select2.full.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('backend/dist/js/app.min.js')}}"></script>
-    <script>
 
+    <!-- InputMask -->
+    <script src="{{asset('backend/plugins/input-mask/jquery.inputmask.js')}}"></script>
+    <script src="{{asset('backend/plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
+    <script src="{{asset('backend/plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
+
+
+
+
+    <script>
       $(".select2").select2();
+
+      $("[data-mask]").inputmask();
 
       $(document).ready(function() {
         $('#example1').DataTable( {
@@ -266,16 +276,23 @@
           }
         } );
       } );
-
-
     </script>
 
-
-
-
-    <!-- page script -->
-
-
+    <script>
+      var password = document.getElementById("password"), confirm_password = document.getElementById("password-confirm");
+      function validatePassword(){
+        if(password.value != confirm_password.value)
+        {
+          confirm_password.setCustomValidity("As Senhas devem ser Iguais!");
+        }
+        else
+        {
+          confirm_password.setCustomValidity('');
+        }
+      }
+      password.onchange = validatePassword;
+      confirm_password.onkeyup = validatePassword;
+    </script>
 
   </body>
 </html>

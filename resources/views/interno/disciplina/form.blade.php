@@ -14,18 +14,32 @@
                 <label>Turma</label>
                 <select id="idTurma" name="idTurma" class="form-control select2">
                     <option value="">SELECIONE</option>
-                    @foreach($turma as $turmas)
-                        <option value="{{$turmas['id']}}">{{$turmas['nome']}}</option>
-                    @endforeach
+                    @if(isset($idTurma))
+                        <option value="{{$idTurma[0]['id']}}" selected>{{$idTurma[0]['nome']}}</option>
+                        @foreach($turma as $turmas)
+                            <option value="{{$turmas['id']}}">{{$turmas['nome']}}</option>
+                        @endforeach
+                    @else
+                        @foreach($turma as $turmas)
+                            <option value="{{$turmas['id']}}">{{$turmas['nome']}}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
             <div class="form-group col-md-4">
                 <label>Professor</label>
                 <select id="idProfessor" name="idProfessor" class="form-control select2">
                     <option value="">SELECIONE</option>
-                    @foreach($professor as $professores)
-                        <option value="{{$professores['id']}}">{{$professores['nome']}}</option>
-                    @endforeach
+                    @if($idProfessor)
+                        <option value="{{$idProfessor[0]['id']}}" selected>{{$idProfessor[0]['nome']}}</option>
+                        @foreach($professor as $professores)
+                            <option value="{{$professores['id']}}">{{$professores['nome']}}</option>
+                        @endforeach
+                    @else
+                        @foreach($professor as $professores)
+                            <option value="{{$professores['id']}}">{{$professores['nome']}}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>

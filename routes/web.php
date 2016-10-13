@@ -29,6 +29,8 @@ Route::get('/interno/pessoas/create', ['as' => 'interno.pessoas.create', 'uses' 
 Route::post('/interno/pessoas/salvar', ['as' => 'interno.pessoas.store', 'uses' => 'PessoasController@store']);
 Route::get('/interno/pessoas/edit/{id}', ['as' => 'interno.pessoas.edit', 'uses' => 'PessoasController@edit']);
 Route::put('/interno/pessoas/update/{id}', ['as' => 'interno.pessoas.update', 'uses' => 'PessoasController@update']);
+Route::get('/interno/pessoas/ativar/{id}', ['as' => 'interno.pessoas.ativar', 'uses' => 'PessoasController@ativar']);
+Route::get('/interno/pessoas/inativar/{id}', ['as' => 'interno.pessoas.inativar', 'uses' => 'PessoasController@inativar']);
 
 //GESTÃO DE TURMAS
 Route::get('/interno/turma', ['as' => 'interno.turma.index', 'uses' => 'TurmaController@index']);

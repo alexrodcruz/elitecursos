@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Pessoas;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -54,6 +56,43 @@ class PessoasController extends Controller
 
         $pessoa->create($dadosForm);
 
+        if(array_key_exists('isAdm',$dadosForm))
+        {
+            $isAdm = $dadosForm['isAdm'];
+        }
+        else
+        {
+            $isAdm = 0;
+        }
+
+        if(array_key_exists('isProfessor',$dadosForm))
+        {
+            $isProfessor = $dadosForm['isProfessor'];
+        }
+        else
+        {
+            $isProfessor = 0;
+        }
+
+        if(array_key_exists('isAluno',$dadosForm))
+        {
+            $isAluno = $dadosForm['isAluno'];
+        }
+        else
+        {
+            $isAluno = 0;
+        }
+
+        User::create([
+            'name' => $dadosForm['nome'],
+            'email' => $dadosForm['email'],
+            'password' => bcrypt($dadosForm['password']),
+            'isAdm' => $isAdm,
+            'isProfessor' => $isProfessor,
+            'isAluno' => $isAluno,
+            ''
+        ]);
+
         $dbPessoas = new Pessoas();
 
         $pessoas['pessoas'] = $dbPessoas::all();
@@ -94,7 +133,7 @@ class PessoasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PessoasRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $dbPessoas = new Pessoas();
 
@@ -102,8 +141,10 @@ class PessoasController extends Controller
 
         unset($upd['_token']);
         unset($upd['_method']);
-        unset($upd['senha']);
-        unset($upd['senha2']);
+        unset($upd['password']);
+        unset($upd['password-confirm']);
+
+        $dbPessoas->where(['id' => $id])->update(['isAdm' => 0, 'isProfessor' => 0, 'isAluno' => 0]);
 
         $dbPessoas->where(['id' => $id])->update($upd);
 
@@ -112,14 +153,25 @@ class PessoasController extends Controller
         return view('interno.pessoas.index')->with($pessoas);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function ativar($id)
     {
-        //
+        $dbPessoas = new Pessoas();
+
+        $dbPessoas->where(['id' => $id])->update(['ativo' => 1]);
+
+        $pessoas['pessoas'] = $dbPessoas::all();
+
+        return view('interno.pessoas.index')->with($pessoas);
+    }
+
+    public function inativar($id)
+    {
+        $dbPessoas = new Pessoas();
+
+        $dbPessoas->where(['id' => $id])->update(['ativo' => 0]);
+
+        $pessoas['pessoas'] = $dbPessoas::all();
+
+        return view('interno.pessoas.index')->with($pessoas);
     }
 }

@@ -17,7 +17,7 @@
             <h3 class="box-title">
 
                 <a href="{{ route('interno.turma.create') }}">
-                    <img src="{{asset('backend/dist/img/addPessoa.png')}}" TITLE="ADICIONAR TURMA">
+                    <img src="{{asset('backend/dist/img/add.png')}}" TITLE="ADICIONAR TURMA">
                 </a>
 
 
@@ -28,26 +28,29 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th style="text-align: center;"></th>
+                        <th style="text-align: center;">AÇÃO</th>
                         <th style="text-align: center;">NOME</th>
                         <th style="text-align: center;">DATA INICIO</th>
                         <th style="text-align: center;">DATA FIM</th>
+                        <th style="text-align: center;">SITUAÇÃO</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($turma as $turmas)
                         <tr>
-                            <td>
+                            <td align="center">
                                 <a href="{{ route('interno.turma.edit', ['id' => $turmas['id'] ]) }}">
-                                    <img src="{{asset('backend/dist/img/edit.png')}}" TITLE="EDITAR">
-                                </a>
-                                <a href="#">
-                                    <img src="{{asset('backend/dist/img/desativar.png')}}" TITLE="DESATIVAR">
+                                    <img src="{{asset('backend/dist/img/edit.png')}}" TITLE="EDITAR TURMA">
                                 </a>
                             </td>
-                            <td>{{$turmas['nome']}}</td>
-                            <td>{{$turmas['dataInicio']}}</td>
-                            <td>{{$turmas['dataFim']}}</td>
+                            <td align="center">{{$turmas['nome']}}</td>
+                            <td align="center">{{ Carbon\Carbon::createFromFormat('Y-m-d', $turmas['dataInicio'])->format('d/m/Y') }}</td>
+                            <td align="center">{{ Carbon\Carbon::createFromFormat('Y-m-d', $turmas['dataFim'])->format('d/m/Y') }}</td>
+                            @if( Carbon\Carbon::now()->format('Y-m-d') >= $turmas['dataFim'] )
+                                <td align="center"><img src="{{asset('backend/dist/img/inativo.png')}}" TITLE="INATIVA"></td>
+                            @else
+                                <td align="center"><img src="{{asset('backend/dist/img/ativo.png')}}" TITLE="ATIVA"></td>
+                            @endif
                         </tr>
                     @endforeach
                 </table>
@@ -56,21 +59,4 @@
                     @endif
         </div><!-- /.box-body -->
     </div><!-- /.box -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @stop

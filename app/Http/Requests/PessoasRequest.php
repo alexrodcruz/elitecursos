@@ -37,7 +37,7 @@ class PessoasRequest extends FormRequest
             'enderecoCep' => 'required',
             'enderecoCidade' => 'required',
             'enderecoEstado' => 'required',
-            'email' => 'required'
+            'email' => 'required|unique:pessoas'
 
         ];
     }
@@ -59,6 +59,7 @@ class PessoasRequest extends FormRequest
             'enderecoCidade.required' => 'Campo CIDADE esta em Branco!',
             'enderecoEstado.required' => 'Campo ESTADO esta em Branco!',
             'email.required' => 'Campo EMAIL esta em Branco!',
+            'email.unique' => 'O EMAIL informado já existe!',
             ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Turma;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 use App\Http\Requests;
 use App\Http\Requests\TurmaRequest;

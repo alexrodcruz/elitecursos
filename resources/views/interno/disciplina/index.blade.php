@@ -17,7 +17,7 @@
             <h3 class="box-title">
 
                 <a href="{{ route('interno.disciplina.create') }}">
-                    <img src="{{asset('backend/dist/img/addPessoa.png')}}" TITLE="ADICIONAR DISCIPLINA">
+                    <img src="{{asset('backend/dist/img/add.png')}}" TITLE="ADICIONAR DISCIPLINA">
                 </a>
 
 
@@ -28,26 +28,23 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th style="text-align: center;"></th>
+                        <th style="text-align: center;">AÇÃO</th>
                         <th style="text-align: center;">NOME</th>
                         <th style="text-align: center;">CARGA HORÁRIA</th>
-                        <th style="text-align: center;">TURMA</th>
+                        <th style="text-align: center;">TURMA-FIM</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($disciplina as $disciplinas)
                         <tr>
-                            <td>
-                                <a href="{{ route('interno.disciplina.edit', ['id' => $disciplinas['id'] ]) }}">
+                            <td align="center">
+                                <a href="{{ route('interno.disciplina.edit', ['id' => $disciplinas->id ]) }}">
                                     <img src="{{asset('backend/dist/img/edit.png')}}" TITLE="EDITAR">
                                 </a>
-                                <a href="#">
-                                    <img src="{{asset('backend/dist/img/desativar.png')}}" TITLE="DESATIVAR">
-                                </a>
                             </td>
-                            <td>{{$disciplinas['nome']}}</td>
-                            <td>{{$disciplinas['cargaHoraria']}}</td>
-                            <td></td>
+                            <td>{{$disciplinas->nomeDisciplina}}</td>
+                            <td align="center">{{$disciplinas->cargaHoraria}}h</td>
+                            <td align="center">{{$disciplinas->nomeTurma}} - {{Carbon\Carbon::createFromFormat('Y-m-d', $disciplinas->dataFim)->format('d/m/Y') }}</td>
                         </tr>
                     @endforeach
                 </table>

@@ -26,7 +26,7 @@ class Pessoas extends Model
                             'enderecoCidade',
                             'enderecoEstado',
                             'isAdm',
-                            'idProfessor',
+                            'isProfessor',
                             'isAluno',
                             'ativo'
                         ];
