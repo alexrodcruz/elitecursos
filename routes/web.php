@@ -50,7 +50,7 @@ Route::put('/interno/disciplina/update/{id}', ['as' => 'interno.disciplina.updat
 Route::get('/interno/matricula', ['as' => 'interno.matricula.index', 'uses' => 'MatriculaController@index']);
 Route::get('/interno/matricula/create', ['as' => 'interno.matricula.create', 'uses' => 'MatriculaController@create']);
 Route::post('/interno/matricula/salvar', ['as' => 'interno.matricula.store', 'uses' => 'MatriculaController@store']);
-Route::get('/interno/matricula/edit/{id}', ['as' => 'interno.matricula.edit', 'uses' => 'MatriculaController@edit']);
+Route::get('/interno/matricula/remove/{id}', ['as' => 'interno.matricula.remove', 'uses' => 'MatriculaController@remove']);
 Route::put('/interno/matricula/update/{id}', ['as' => 'interno.matricula.update', 'uses' => 'MatriculaController@update']);
 
 Auth::routes();

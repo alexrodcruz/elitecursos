@@ -16,7 +16,20 @@ class MatriculaController extends Controller
 {
     public function index()
     {
-        return view('interno.matricula.index');
+        $matriculas = DB::select("SELECT A.id,
+                                       B.nome as nomeAluno,
+                                       B.cpf,
+                                       C.nome as nomeTurma,
+                                       C.dataFim
+                                  FROM matricula A
+                            INNER JOIN pessoas B
+                                    ON (A.idAluno = B.id)
+                            INNER JOIN turma C
+                                    ON (A.idTurma = C.id);");
+
+        $matriculas['matriculas'] = $matriculas;
+
+        return view('interno.matricula.index')->with($matriculas);
     }
 
     public function create()
@@ -58,6 +71,42 @@ class MatriculaController extends Controller
             $dbMatricula->create($dadosForm);
         }
 
-        return view('interno.matricula.index');
+        $matriculas = DB::select("SELECT A.id,
+                                       B.nome as nomeAluno,
+                                       B.cpf,
+                                       C.nome as nomeTurma,
+                                       C.dataFim
+                                  FROM matricula A
+                            INNER JOIN pessoas B
+                                    ON (A.idAluno = B.id)
+                            INNER JOIN turma C
+                                    ON (A.idTurma = C.id);");
+
+        $matriculas['matriculas'] = $matriculas;
+
+        return view('interno.matricula.index')->with($matriculas);
+    }
+
+    public function remove($id)
+    {
+        $dbMatricula = new Matricula();
+
+        $dbMatricula->where(['id' => $id])->delete();
+
+
+        $matriculas = DB::select("SELECT A.id,
+                                       B.nome as nomeAluno,
+                                       B.cpf,
+                                       C.nome as nomeTurma,
+                                       C.dataFim
+                                  FROM matricula A
+                            INNER JOIN pessoas B
+                                    ON (A.idAluno = B.id)
+                            INNER JOIN turma C
+                                    ON (A.idTurma = C.id);");
+
+        $matriculas['matriculas'] = $matriculas;
+
+        return view('interno.matricula.index')->with($matriculas);
     }
 }

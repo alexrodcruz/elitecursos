@@ -24,29 +24,29 @@
             </h3>
         </div><!-- /.box-header -->
         <div class="box-body">
-            @if( isset($turma) )
+            @if( isset($matriculas) )
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th style="text-align: center;">AÇÃO</th>
-                        <th style="text-align: center;">NOME</th>
-                        <th style="text-align: center;">DATA INICIO</th>
-                        <th style="text-align: center;">DATA FIM</th>
-                        <th style="text-align: center;">SITUAÇÃO</th>
+                        <th style="text-align: center;">ALUNO</th>
+                        <th style="text-align: center;">CPF</th>
+                        <th style="text-align: center;">TURMA</th>
+                        <th style="text-align: center;">SITUAÇÃO TURMA</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($turma as $turmas)
+                    @foreach($matriculas as $matricula)
                         <tr>
                             <td align="center">
-                                <a href="{{ route('interno.turma.edit', ['id' => $turmas['id'] ]) }}">
-                                    <img src="{{asset('backend/dist/img/edit.png')}}" TITLE="EDITAR TURMA">
+                                <a href="{{ route('interno.matricula.remove', ['id' => $matricula->id ]) }}">
+                                    <img src="{{asset('backend/dist/img/inativo.png')}}" TITLE="CANCELAR MATRÍCULA">
                                 </a>
                             </td>
-                            <td align="center">{{$turmas['nome']}}</td>
-                            <td align="center">{{ Carbon\Carbon::createFromFormat('Y-m-d', $turmas['dataInicio'])->format('d/m/Y') }}</td>
-                            <td align="center">{{ Carbon\Carbon::createFromFormat('Y-m-d', $turmas['dataFim'])->format('d/m/Y') }}</td>
-                            @if( Carbon\Carbon::now()->format('Y-m-d') >= $turmas['dataFim'] )
+                            <td align="center">{{$matricula->nomeAluno}}</td>
+                            <td align="center">{{$matricula->cpf}}</td>
+                            <td align="center">{{$matricula->nomeTurma}}</td>
+                            @if( Carbon\Carbon::now()->format('Y-m-d') >= $matricula->dataFim )
                                 <td align="center"><img src="{{asset('backend/dist/img/inativo.png')}}" TITLE="INATIVA"></td>
                             @else
                                 <td align="center"><img src="{{asset('backend/dist/img/ativo.png')}}" TITLE="ATIVA"></td>
