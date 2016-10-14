@@ -37,6 +37,32 @@ class CreatePessoasTable extends Migration
             $table->integer('ativo')->default(1);
             $table->timestamps();
         });
+
+        DB::table('pessoas')->insert(
+            array(
+                'nome' => 'Alessandro Rodrigues da Cruz',
+                'sexo' => 'Masculino',
+                'dataNascimento' => '1987-03-22',
+                'estadoCivil' => 'Casado',
+                'cpf' => '000.000.000-00',
+                'rg' => '0',
+                'orgaoEmissor' => 'SSP/RO',
+                'fone1' => '(69) 98479-9584',
+                'fone2' => '(69) 98479-9584',
+                'email' => 'alessandrorodcruz@gmail.com',
+                'enderecoCep' => '78975-000',
+                'enderecoRua' => 'tal',
+                'enderecoNumero' => 'tal',
+                'enderecoBairro' => 'tal',
+                'enderecoCidade' => 'tal',
+                'enderecoEstado' => 'Rondônia',
+                'isAdm' => 1,
+                'isProfessor' => 0,
+                'isAluno' => 0,
+                'ativo' => 1
+            )
+        );
+
     }
 
     /**

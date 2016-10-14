@@ -44,7 +44,7 @@
                             </td>
                             <td>{{$disciplinas->nomeDisciplina}}</td>
                             <td align="center">{{$disciplinas->cargaHoraria}}h</td>
-                            <td align="center">{{$disciplinas->nomeTurma}} - {{Carbon\Carbon::createFromFormat('Y-m-d', $disciplinas->dataFim)->format('d/m/Y') }}</td>
+                            <td align="center">{{$disciplinas->nomeTurma}} - {{$disciplinas->dataFim}}</td>
                         </tr>
                     @endforeach
                 </table>

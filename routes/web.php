@@ -46,5 +46,12 @@ Route::post('/interno/disciplina/salvar', ['as' => 'interno.disciplina.store', '
 Route::get('/interno/disciplina/edit/{id}', ['as' => 'interno.disciplina.edit', 'uses' => 'DisciplinaController@edit']);
 Route::put('/interno/disciplina/update/{id}', ['as' => 'interno.disciplina.update', 'uses' => 'DisciplinaController@update']);
 
+//MATRÍCULA
+Route::get('/interno/matricula', ['as' => 'interno.matricula.index', 'uses' => 'MatriculaController@index']);
+Route::get('/interno/matricula/create', ['as' => 'interno.matricula.create', 'uses' => 'MatriculaController@create']);
+Route::post('/interno/matricula/salvar', ['as' => 'interno.matricula.store', 'uses' => 'MatriculaController@store']);
+Route::get('/interno/matricula/edit/{id}', ['as' => 'interno.matricula.edit', 'uses' => 'MatriculaController@edit']);
+Route::put('/interno/matricula/update/{id}', ['as' => 'interno.matricula.update', 'uses' => 'MatriculaController@update']);
+
 Auth::routes();
 Route::get('/home', 'HomeController@index');

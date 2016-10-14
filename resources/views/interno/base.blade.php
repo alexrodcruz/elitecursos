@@ -165,7 +165,7 @@
               </ul>
             </li>
             <li>
-              <a href="#">
+              <a href="{{ route('interno.matricula.index') }}">
                 <i class="fa fa-book"></i> <span>Matrícula</span>
               </a>
             </li>

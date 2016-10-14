@@ -26,20 +26,16 @@ class DisciplinaController extends Controller
      */
     public function index()
     {
-
         $disciplina = DB::select("SELECT A.id,
                                                        A.nome as nomeDisciplina,
                                                        A.cargaHoraria,
                                                        B.nome as nomeTurma,
-                                                       B.dataFim
+                                                       DATE_FORMAT(B.dataFim,'%d/%m/%Y') as dataFim
                                                   FROM disciplina A
                                             INNER JOIN turma B
                                                     ON (A.idTurma = B.id);");
 
         $disciplina['disciplina'] = $disciplina;
-
-
-
 
         return view('interno.disciplina.index')->with($disciplina);
     }
@@ -56,6 +52,10 @@ class DisciplinaController extends Controller
 
         $turma['professor'] = $dbPessoa->where('isProfessor', '=', 1)->where('ativo', '=', 1)->get()->toArray();
 
+        $turma['idTurma'] = null;
+
+        $turma['idProfessor'] = null;
+
         return view('interno.disciplina.create')->with($turma);
     }
 
@@ -67,7 +67,16 @@ class DisciplinaController extends Controller
 
         $dbDisciplina->create($dadosForm);
 
-        $disciplina['disciplina'] = $dbDisciplina::all();
+        $disciplina = DB::select("SELECT A.id,
+                                                       A.nome as nomeDisciplina,
+                                                       A.cargaHoraria,
+                                                       B.nome as nomeTurma,
+                                                       DATE_FORMAT(B.dataFim,'%d/%m/%Y') as dataFim
+                                                  FROM disciplina A
+                                            INNER JOIN turma B
+                                                    ON (A.idTurma = B.id);");
+
+        $disciplina['disciplina'] = $disciplina;
 
         return view('interno.disciplina.index')->with($disciplina);
     }
