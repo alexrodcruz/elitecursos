@@ -19,7 +19,7 @@
                     </div>
                 @endif
 
-                {!! Form::open(['route' => 'interno.material.storePdf', 'method' => 'post', 'files'=>true, 'id' => 'material']) !!}
+                {!! Form::open(['route' => 'interno.material.storePdf', 'method' => 'post', 'enctype' => 'multipart/form-data', 'files'=>true, 'id' => 'material']) !!}
 
                 @include('interno.material.formPdf')
 

@@ -4,11 +4,11 @@
 
 
     <section class="content-header">
-        <h1>Efetuar Matrícula
+        <h1>Materiais Didáticos
         </h1>
         <ol class="breadcrumb">
             <li><a href="/interno"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Turmas</li>
+            <li class="active">Materiais</li>
         </ol>
     </section>
     <br>
@@ -16,46 +16,51 @@
         <div class="box-header">
             <h3 class="box-title">
 
-                <a href="{{ route('interno.matricula.create') }}">
-                    <img src="{{asset('backend/dist/img/add.png')}}" TITLE="REALIZAR MATRÍCULA">
+                <a href="{{ route('interno.material.createPdf') }}">
+                    <img src="{{asset('backend/dist/img/pdf.png')}}" TITLE="ADICIONAR PDF">
                 </a>
-
-
+                <a href="{{ route('interno.material.createVideo') }}">
+                    <img src="{{asset('backend/dist/img/video.png')}}" TITLE="ADICIONAR VÍDEO">
+                </a>
             </h3>
         </div><!-- /.box-header -->
         <div class="box-body">
-            @if( isset($matriculas) )
+            @if( isset($material) )
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th style="text-align: center;">AÇÃO</th>
-                        <th style="text-align: center;">ALUNO</th>
-                        <th style="text-align: center;">CPF</th>
-                        <th style="text-align: center;">TURMA</th>
-                        <th style="text-align: center;">SITUAÇÃO TURMA</th>
+                        <th style="text-align: center;">DESCRIÇÃO</th>
+                        <th style="text-align: center;">TIPO</th>
+                        <th style="text-align: center;">TURMA - DISCIPLINA</th>
+                        <th style="text-align: center;">MATERIAL</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($matriculas as $matricula)
+                    @foreach($material as $materiais)
                         <tr>
                             <td align="center">
-                                <a href="{{ route('interno.matricula.remove', ['id' => $matricula->id ]) }}">
-                                    <img src="{{asset('backend/dist/img/inativo.png')}}" TITLE="CANCELAR MATRÍCULA">
+                                <a href="{{ route('interno.material.remove', ['id' => $materiais->id ]) }}">
+                                    <img src="{{asset('backend/dist/img/inativo.png')}}" TITLE="EXCLUIR MATERIAL">
                                 </a>
                             </td>
-                            <td>{{$matricula->nomeAluno}}</td>
-                            <td align="center">{{$matricula->cpf}}</td>
-                            <td align="center">{{$matricula->nomeTurma}}</td>
-                            @if( Carbon\Carbon::now()->format('Y-m-d') >= $matricula->dataFim )
-                                <td align="center"><img src="{{asset('backend/dist/img/inativo.png')}}" TITLE="INATIVA"></td>
-                            @else
-                                <td align="center"><img src="{{asset('backend/dist/img/ativo.png')}}" TITLE="ATIVA"></td>
-                            @endif
+                            <td>{{$materiais->descricao}}</td>
+                            <td align="center">{{$materiais->tipoMaterial}}</td>
+                            <td>{{$materiais->nomeTurma}} - {{$materiais->nomeDisciplina}}</td>
+                            <td>
+                                @if($materiais->tipoMaterial == 'PDF')
+                                    <a href="../{{$materiais->material}}" TITLE="BAIXAR" target="_blank">BAIXAR</a>
+                                @else
+
+                                @endif
+
+
+                            </td>
                         </tr>
                     @endforeach
                 </table>
                     @else
-                        <h4 style="color:red"> Não existem Matrículas registradas.</h4>
+                        <h4 style="color:red"> Não existem Materiais disponíveis.</h4>
                     @endif
         </div><!-- /.box-body -->
     </div><!-- /.box -->

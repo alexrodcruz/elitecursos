@@ -4,26 +4,41 @@
     <!-- form start -->
     <div class="box-body">
         <div class="row">
-            <div class="form-group col-md-2">
-                {!! Form::label('tipoMaterial', 'Tipo Material:') !!}
-                {!! Form::select('tipoMaterial', ['PDF' => 'PDF', 'Vídeo' => 'Vídeo'], null, ['class' => 'form-control', 'placeholder' => 'Selecione...']) !!}
+            <div class="form-group col-md-4">
+                {!! Form::label('descricao', 'Descrição:') !!}
+                {!! Form::text('descricao', NULL, ['class' => 'form-control', 'onChange' => 'this.value = this.value.toUpperCase()']) !!}
             </div>
-            <div class="form-group col-md-2">
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                {!! Form::label('tipoMaterial', 'Tipo Material:') !!}
+                {!! Form::text('tipoMaterial', 'Vídeo', ['class' => 'form-control', 'readonly']) !!}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
                 <label>Turma</label>
                 <select id="idTurma" name="idTurma" class="form-control select2">
-                    <option></option>
+                    <option>SELECIONE A TURMA</option>
                     @foreach($turma as $turmas)
                         <option value="{{$turmas['id']}}">{{$turmas['nome']}}</option>
                     @endforeach
                 </select>
             </div>
         </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Disciplina</label>
+                <select id="idDisciplina" name="idDisciplina" class="form-control select2"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Link</label>
+                <input type="text" id="material" name="material" class="form-control" multiple/>
+            </div>
+        </div>
     </div>
-
-
-
-
-
     <div class="box-footer">
         <button type="submit" class="btn btn-primary">Enviar</button>
     </div>

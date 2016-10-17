@@ -19,7 +19,7 @@
                     </div>
                 @endif
 
-                {!! Form::open(['route' => 'interno.material.storeVideo', 'method' => 'post', 'id' => 'material']) !!}
+                {!! Form::open(['route' => 'interno.material.storeVideo', 'method' => 'post', 'enctype' => 'multipart/form-data', 'files'=>true, 'id' => 'material']) !!}
 
                 @include('interno.material.formVideo')
 

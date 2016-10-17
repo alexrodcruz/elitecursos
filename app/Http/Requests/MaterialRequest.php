@@ -24,16 +24,20 @@ class MaterialRequest extends FormRequest
     public function rules()
     {
         return [
-            //'idTurma' =>  'required',
-            //'idDisciplina' =>  'required'
+            'descricao' => 'required',
+            'idTurma' =>  'required',
+            'idDisciplina' =>  'required',
+            'material' => 'required'
         ];
     }
 
     public function messages()
     {
         return [
+            'descricao.required' => 'Campo Descrição esta em Branco!',
             'idTurma.required' => 'Campo TURMA esta em Branco!',
             'idDisciplina.required' => 'Campo DISCIPLINA esta em Branco!',
+            'material.required' => 'Informe o LINK ou insira pelo menos 1(um) anexo!',
         ];
     }
 }

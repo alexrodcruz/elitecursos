@@ -61,6 +61,7 @@ Route::get('/interno/material/createPdf', ['as' => 'interno.material.createPdf',
 Route::post('/interno/material/salvarPdf', ['as' => 'interno.material.storePdf', 'uses' => 'MaterialController@storePdf']);
 Route::get('/interno/material/createVideo', ['as' => 'interno.material.createVideo', 'uses' => 'MaterialController@createVideo']);
 Route::post('/interno/material/salvarVideo', ['as' => 'interno.material.storeVideo', 'uses' => 'MaterialController@storeVideo']);
+Route::get('/interno/material/remove/{id}', ['as' => 'interno.material.remove', 'uses' => 'MaterialController@remove']);
 
 Route::get('/ajax-disciplina', function (){
 

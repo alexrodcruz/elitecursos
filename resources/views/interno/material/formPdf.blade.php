@@ -5,8 +5,8 @@
     <div class="box-body">
         <div class="row">
             <div class="form-group col-md-4">
-                {!! Form::label('nomeMaterial', 'Descrição:') !!}
-                {!! Form::text('nomeMaterial', NULL, ['class' => 'form-control', 'onChange' => 'this.value = this.value.toUpperCase()']) !!}
+                {!! Form::label('descricao', 'Descrição:') !!}
+                {!! Form::text('descricao', NULL, ['class' => 'form-control', 'onChange' => 'this.value = this.value.toUpperCase()']) !!}
             </div>
         </div>
         <div class="row">
@@ -35,15 +35,10 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label>Arquivo(s)</label>
-                <input type="file" id="idArquivo[]" name="idArquivo[]" class="form-control" multiple/>
+                <input type="file" id="material[]" name="material[]" class="form-control" multiple/>
             </div>
         </div>
     </div>
-
-
-
-
-
     <div class="box-footer">
         <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
