@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Input;
 
 class MaterialController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
 
@@ -132,7 +138,38 @@ class MaterialController extends Controller
 
     public function remove($id)
     {
-        dd('remove');
+        $dbMaterial = new Material();
+
+        $materialTipo = DB::select("SELECT A.tipoMaterial, A.material FROM material A WHERE id = $id;");
+
+        if ($materialTipo[0]->tipoMaterial == 'PDF')
+        {
+            unlink($materialTipo[0]->material);
+
+            $dbMaterial->where(['id' => $id])->delete();
+        }
+        else
+        {
+            $dbMaterial->where(['id' => $id])->delete();
+        }
+
+        $material = DB::select("SELECT A.id,
+                                       A.descricao,
+                                       A.tipoMaterial,
+                                       B.nome as nomeTurma,
+                                       C.nome as nomeDisciplina,
+                                       A.material
+                                  FROM material A
+                            INNER JOIN turma B
+                                    ON (A.idTurma = B.id)
+                            INNER JOIN disciplina C 
+                                    ON (A.idDisciplina = C.id);");
+
+        $material['material'] = $material;
+
+        return view('interno.material.index')->with($material);
+
+
     }
 
     function remover_espacos($texto)

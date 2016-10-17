@@ -47,9 +47,11 @@
                             <td>{{$materiais->descricao}}</td>
                             <td align="center">{{$materiais->tipoMaterial}}</td>
                             <td>{{$materiais->nomeTurma}} - {{$materiais->nomeDisciplina}}</td>
-                            <td>
+                            <td align="center">
                                 @if($materiais->tipoMaterial == 'PDF')
-                                    <a href="../{{$materiais->material}}" TITLE="BAIXAR" target="_blank">BAIXAR</a>
+                                    <a href="../{{$materiais->material}}" target="_blank">
+                                        <img src="{{asset('backend/dist/img/pdf.png')}}" TITLE="BAIXAR" />
+                                    </a>
                                 @else
 
                                 @endif
