@@ -13,6 +13,8 @@
 
 
 //FRONTEND
+use Illuminate\Support\Facades\Input;
+
 Route::get('/', 'siteController@index');
 Route::get('/contato', 'siteController@contato');
 Route::get('/depoimentos', 'siteController@depoimentos');
@@ -52,6 +54,22 @@ Route::get('/interno/matricula/create', ['as' => 'interno.matricula.create', 'us
 Route::post('/interno/matricula/salvar', ['as' => 'interno.matricula.store', 'uses' => 'MatriculaController@store']);
 Route::get('/interno/matricula/remove/{id}', ['as' => 'interno.matricula.remove', 'uses' => 'MatriculaController@remove']);
 Route::put('/interno/matricula/update/{id}', ['as' => 'interno.matricula.update', 'uses' => 'MatriculaController@update']);
+
+//MATERIAL DIDÁTICO
+Route::get('/interno/material', ['as' => 'interno.material.index', 'uses' => 'MaterialController@index']);
+Route::get('/interno/material/createPdf', ['as' => 'interno.material.createPdf', 'uses' => 'MaterialController@createPdf']);
+Route::post('/interno/material/salvarPdf', ['as' => 'interno.material.storePdf', 'uses' => 'MaterialController@storePdf']);
+Route::get('/interno/material/createVideo', ['as' => 'interno.material.createVideo', 'uses' => 'MaterialController@createVideo']);
+Route::post('/interno/material/salvarVideo', ['as' => 'interno.material.storeVideo', 'uses' => 'MaterialController@storeVideo']);
+
+Route::get('/ajax-disciplina', function (){
+
+    $idturma = Input::get('idTurma');
+
+    $disciplinas = \App\Disciplina::where('idTurma', '=',$idturma)->get();
+
+    return \Illuminate\Support\Facades\Response::json($disciplinas);
+});
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');

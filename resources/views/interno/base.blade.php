@@ -169,6 +169,22 @@
                 <i class="fa fa-book"></i> <span>Matrícula</span>
               </a>
             </li>
+              <li class="treeview">
+                  <a href="#">
+                      <i class="fa fa-folder"></i> <span>Material Didático</span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu">
+                      <li><a href="#"><i class="fa fa-circle-o"></i> Consultar</a></li>
+                      <li>
+                          <a href="#"><i class="fa fa-circle-o"></i> Enviar <i class="fa fa-angle-left pull-right"></i></a>
+                          <ul class="treeview-menu">
+                              <li><a href="{{ route('interno.material.createPdf')}}"><i class="fa fa-circle-o"></i> PDF</a></li>
+                              <li><a href="{{ route('interno.material.createVideo')}}"><i class="fa fa-circle-o"></i> Vídeo</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+              </li>
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -293,6 +309,29 @@
       password.onchange = validatePassword;
       confirm_password.onkeyup = validatePassword;
     </script>
+    <script>
+      $('#idTurma').on('change',function(e){
+
+        console.log(e);
+
+        var idTurma = e.target.value
+
+        //ajax
+        $.get('/ajax-disciplina?idTurma='+idTurma, function(data){
+
+          $('#idDisciplina').empty();
+          $.each(data, function(index, disciplinaObj){
+
+            $('#idDisciplina').append('<option></option>')
+            $('#idDisciplina').append('<option value="'+disciplinaObj.id+'">'+disciplinaObj.nome+'</option>')
+
+          });
+
+        })
+
+      })
+    </script>
+
 
   </body>
 </html>
