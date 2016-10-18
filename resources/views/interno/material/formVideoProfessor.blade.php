@@ -13,7 +13,7 @@
             <div class="form-group col-md-4">
                 {!! Form::label('tipoMaterial', 'Tipo Material:') !!}
                 {!! Form::text('tipoMaterial', 'Vídeo', ['class' => 'form-control', 'readonly']) !!}
-                {!! Form::hidden('idProfessor', 40000, ['class' => 'form-control', 'id' => 'idProfessor']) !!}
+                {!! Form::hidden('idProfessor', $idProfessor, ['class' => 'form-control', 'id' => 'idProfessor']) !!}
             </div>
         </div>
         <div class="row">
@@ -22,7 +22,7 @@
                 <select id="idTurma" name="idTurma" class="form-control select2">
                     <option>SELECIONE A TURMA</option>
                     @foreach($turma as $turmas)
-                        <option value="{{$turmas['id']}}">{{$turmas['nome']}}</option>
+                        <option value="{{$turmas->id}}">{{$turmas->nome}}</option>
                     @endforeach
                 </select>
             </div>

@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\DB;
 
 class MatriculaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $matriculas = DB::select("SELECT A.id,

@@ -5,15 +5,20 @@
     <div class="box-body">
         <div class="row">
             <div class="form-group col-md-4">
-                {!! Form::label('descricao', 'Descrição:') !!}
-                {!! Form::text('descricao', NULL, ['class' => 'form-control', 'onChange' => 'this.value = this.value.toUpperCase()']) !!}
+                <?php echo Form::label('descricao', 'Descrição:'); ?>
+
+                <?php echo Form::text('descricao', NULL, ['class' => 'form-control', 'onChange' => 'this.value = this.value.toUpperCase()']); ?>
+
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-4">
-                {!! Form::label('tipoMaterial', 'Tipo Material:') !!}
-                {!! Form::text('tipoMaterial', 'Vídeo', ['class' => 'form-control', 'readonly']) !!}
-                {!! Form::hidden('idProfessor', 40000, ['class' => 'form-control', 'id' => 'idProfessor']) !!}
+                <?php echo Form::label('tipoMaterial', 'Tipo Material:'); ?>
+
+                <?php echo Form::text('tipoMaterial', 'PDF', ['class' => 'form-control', 'readonly']); ?>
+
+                <?php echo Form::hidden('idProfessor', 40000, ['class' => 'form-control', 'id' => 'idProfessor']); ?>
+
             </div>
         </div>
         <div class="row">
@@ -21,9 +26,9 @@
                 <label>Turma</label>
                 <select id="idTurma" name="idTurma" class="form-control select2">
                     <option>SELECIONE A TURMA</option>
-                    @foreach($turma as $turmas)
-                        <option value="{{$turmas['id']}}">{{$turmas['nome']}}</option>
-                    @endforeach
+                    <?php $__currentLoopData = $turma; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $turmas): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                        <option value="<?php echo e($turmas['id']); ?>"><?php echo e($turmas['nome']); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                 </select>
             </div>
         </div>
@@ -35,8 +40,8 @@
         </div>
         <div class="row">
             <div class="form-group col-md-4">
-                <label>Link</label>
-                <input type="text" id="material" name="material" class="form-control" multiple/>
+                <label>Arquivo(s)</label>
+                <input type="file" id="material[]" name="material[]" class="form-control" multiple/>
             </div>
         </div>
     </div>

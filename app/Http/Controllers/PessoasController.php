@@ -137,6 +137,8 @@ class PessoasController extends Controller
     {
         $dbPessoas = new Pessoas();
 
+        $dbUser = new User();
+
         $upd = $request->all();
 
         unset($upd['_token']);
@@ -146,7 +148,38 @@ class PessoasController extends Controller
 
         $dbPessoas->where(['id' => $id])->update(['isAdm' => 0, 'isProfessor' => 0, 'isAluno' => 0]);
 
+        $dbUser->where(['email' => $upd['email']])->update(['isAdm' => 0, 'isProfessor' => 0, 'isAluno' => 0]);
+
         $dbPessoas->where(['id' => $id])->update($upd);
+
+        if(array_key_exists('isAdm',$upd))
+        {
+            $isAdm = $upd['isAdm'];
+        }
+        else
+        {
+            $isAdm = 0;
+        }
+
+        if(array_key_exists('isProfessor',$upd))
+        {
+            $isProfessor = $upd['isProfessor'];
+        }
+        else
+        {
+            $isProfessor = 0;
+        }
+
+        if(array_key_exists('isAluno',$upd))
+        {
+            $isAluno = $upd['isAluno'];
+        }
+        else
+        {
+            $isAluno = 0;
+        }
+
+        $dbUser->where(['email' => $upd['email']])->update(['isAdm' => $isAdm, 'isProfessor' => $isProfessor, 'isAluno' => $isAluno]);
 
         $pessoas['pessoas'] = $dbPessoas::all();
 

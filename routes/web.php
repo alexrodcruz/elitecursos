@@ -14,6 +14,9 @@
 
 //FRONTEND
 use Illuminate\Support\Facades\Input;
+use App\Disciplina;
+
+
 
 Route::get('/', 'siteController@index');
 Route::get('/contato', 'siteController@contato');
@@ -57,17 +60,36 @@ Route::put('/interno/matricula/update/{id}', ['as' => 'interno.matricula.update'
 
 //MATERIAL DIDÁTICO
 Route::get('/interno/material', ['as' => 'interno.material.index', 'uses' => 'MaterialController@index']);
+Route::get('/interno/material/indexProfessor', ['as' => 'interno.material.indexProfessor', 'uses' => 'MaterialController@indexProfessor']);
+Route::get('/interno/material/indexAluno', ['as' => 'interno.material.indexAluno', 'uses' => 'MaterialController@indexAluno']);
 Route::get('/interno/material/createPdf', ['as' => 'interno.material.createPdf', 'uses' => 'MaterialController@createPdf']);
+Route::get('/interno/material/createPdfProfessor', ['as' => 'interno.material.createPdfProfessor', 'uses' => 'MaterialController@createPdfProfessor']);
 Route::post('/interno/material/salvarPdf', ['as' => 'interno.material.storePdf', 'uses' => 'MaterialController@storePdf']);
+Route::post('/interno/material/salvarPdfProfessor', ['as' => 'interno.material.storePdfProfessor', 'uses' => 'MaterialController@storePdfProfessor']);
 Route::get('/interno/material/createVideo', ['as' => 'interno.material.createVideo', 'uses' => 'MaterialController@createVideo']);
+Route::get('/interno/material/createVideoProfessor', ['as' => 'interno.material.createVideoProfessor', 'uses' => 'MaterialController@createVideoProfessor']);
 Route::post('/interno/material/salvarVideo', ['as' => 'interno.material.storeVideo', 'uses' => 'MaterialController@storeVideo']);
+Route::post('/interno/material/salvarVideoProfessor', ['as' => 'interno.material.storeVideoProfessor', 'uses' => 'MaterialController@storeVideoProfessor']);
 Route::get('/interno/material/remove/{id}', ['as' => 'interno.material.remove', 'uses' => 'MaterialController@remove']);
+
+
+
 
 Route::get('/ajax-disciplina', function (){
 
-    $idturma = Input::get('idTurma');
+    $dbDisciplina = new Disciplina();
 
-    $disciplinas = \App\Disciplina::where('idTurma', '=',$idturma)->get();
+    $idturma = Input::get('idTurma');
+    $idProfessor = Input::get('idProfessor');
+
+    if($idProfessor == 40000)
+    {
+        $disciplinas = $dbDisciplina->where('idTurma',$idturma)->get();
+    }
+    else
+    {
+        $disciplinas = $dbDisciplina->where('idTurma',$idturma)->where('idProfessor', $idProfessor)->get();
+    }
 
     return \Illuminate\Support\Facades\Response::json($disciplinas);
 });

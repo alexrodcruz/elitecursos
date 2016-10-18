@@ -13,6 +13,7 @@
             <div class="form-group col-md-4">
                 {!! Form::label('tipoMaterial', 'Tipo Material:') !!}
                 {!! Form::text('tipoMaterial', 'PDF', ['class' => 'form-control', 'readonly']) !!}
+                {!! Form::hidden('idProfessor', 40000, ['class' => 'form-control', 'id' => 'idProfessor']) !!}
             </div>
         </div>
         <div class="row">
