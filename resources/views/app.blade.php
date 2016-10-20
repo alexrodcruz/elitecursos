@@ -29,8 +29,10 @@
             <div class="login">
                 <ul class="nav-login">
                     <li><a href="/login" data-toggle="modal" >Área Restrita</a></li>
+                    <li><a href="/inscricao" data-toggle="modal" >Pré-Inscrição</a></li>
                     <!-- <li><a href="#" data-toggle="modal" data-target="#myModal2">Signup</a></li> -->
                 </ul>
+
             </div>
             <div class="clearfix"></div>
         </div>

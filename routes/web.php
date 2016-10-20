@@ -16,13 +16,15 @@
 use Illuminate\Support\Facades\Input;
 use App\Disciplina;
 
-
-
 Route::get('/', 'siteController@index');
 Route::get('/contato', 'siteController@contato');
 Route::get('/depoimentos', 'siteController@depoimentos');
 Route::get('/professores', 'siteController@professores');
 Route::get('/institucional', 'siteController@institucional');
+
+Route::get('/inscricao', 'siteController@inscricao');
+Route::post('/inscricao/salvar', ['as' => 'inscricao.storePessoa', 'uses' => 'siteController@storePessoa']);
+
 
 
 //BACKEND
@@ -71,9 +73,6 @@ Route::get('/interno/material/createVideoProfessor', ['as' => 'interno.material.
 Route::post('/interno/material/salvarVideo', ['as' => 'interno.material.storeVideo', 'uses' => 'MaterialController@storeVideo']);
 Route::post('/interno/material/salvarVideoProfessor', ['as' => 'interno.material.storeVideoProfessor', 'uses' => 'MaterialController@storeVideoProfessor']);
 Route::get('/interno/material/remove/{id}', ['as' => 'interno.material.remove', 'uses' => 'MaterialController@remove']);
-
-
-
 
 Route::get('/ajax-disciplina', function (){
 
