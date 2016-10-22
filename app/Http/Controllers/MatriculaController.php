@@ -37,6 +37,24 @@ class MatriculaController extends Controller
         return view('interno.matricula.index')->with($matriculas);
     }
 
+    public function pre()
+    {
+        $matriculas = DB::select("SELECT A.id,
+                                       A.nome as nomeAluno,
+                                       A.cpf,
+                                       A.email,
+                                       B.id as idTurma,
+                                       B.nome as nomeTurma
+                                  FROM pessoas A
+                            INNER JOIN turma B
+                                    ON (A.idTurma = B.id)
+                                    WHERE A.ativo = 2;");
+
+        $matriculas['matriculas'] = $matriculas;
+
+        return view('interno.matricula.preInscricao')->with($matriculas);
+    }
+
     public function create()
     {
         $dbTurma = new Turma();
@@ -98,6 +116,31 @@ class MatriculaController extends Controller
 
         $dbMatricula->where(['id' => $id])->delete();
 
+        $matriculas = DB::select("SELECT A.id,
+                                       B.nome as nomeAluno,
+                                       B.cpf,
+                                       C.nome as nomeTurma,
+                                       C.dataFim
+                                  FROM matricula A
+                            INNER JOIN pessoas B
+                                    ON (A.idAluno = B.id)
+                            INNER JOIN turma C
+                                    ON (A.idTurma = C.id);");
+
+        $matriculas['matriculas'] = $matriculas;
+
+        return view('interno.matricula.index')->with($matriculas);
+    }
+
+    public function efetivarPre($id,$idTurma)
+    {
+        $dbPessoas = new Pessoas();
+
+        $dbMatricula = new Matricula();
+
+        $dbPessoas->where(['id' => $id])->update(['ativo' => 1]);
+
+        $dbMatricula->insert(['idAluno' => $id, 'idTurma' => $idTurma]);
 
         $matriculas = DB::select("SELECT A.id,
                                        B.nome as nomeAluno,

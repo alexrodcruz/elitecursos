@@ -35,6 +35,7 @@ class CreatePessoasTable extends Migration
             $table->integer('isProfessor')->default(0);
             $table->integer('isAluno')->default(0);
             $table->integer('ativo')->default(1);
+            $table->integer('idTurma')->default(0);
             $table->timestamps();
         });
 

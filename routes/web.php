@@ -57,13 +57,15 @@ Route::put('/interno/disciplina/update/{id}', ['as' => 'interno.disciplina.updat
 Route::get('/interno/matricula', ['as' => 'interno.matricula.index', 'uses' => 'MatriculaController@index']);
 Route::get('/interno/matricula/create', ['as' => 'interno.matricula.create', 'uses' => 'MatriculaController@create']);
 Route::post('/interno/matricula/salvar', ['as' => 'interno.matricula.store', 'uses' => 'MatriculaController@store']);
+Route::get('/interno/matricula/efetivarPre/{id},{idTurma}', ['as' => 'interno.matricula.efetivarPre', 'uses' => 'MatriculaController@efetivarPre']);
 Route::get('/interno/matricula/remove/{id}', ['as' => 'interno.matricula.remove', 'uses' => 'MatriculaController@remove']);
 Route::put('/interno/matricula/update/{id}', ['as' => 'interno.matricula.update', 'uses' => 'MatriculaController@update']);
+Route::get('/interno/matricula/pre', ['as' => 'interno.matricula.pre', 'uses' => 'MatriculaController@pre']);
+
 
 //MATERIAL DIDÁTICO
 Route::get('/interno/material', ['as' => 'interno.material.index', 'uses' => 'MaterialController@index']);
 Route::get('/interno/material/indexProfessor', ['as' => 'interno.material.indexProfessor', 'uses' => 'MaterialController@indexProfessor']);
-Route::get('/interno/material/indexAluno', ['as' => 'interno.material.indexAluno', 'uses' => 'MaterialController@indexAluno']);
 Route::get('/interno/material/createPdf', ['as' => 'interno.material.createPdf', 'uses' => 'MaterialController@createPdf']);
 Route::get('/interno/material/createPdfProfessor', ['as' => 'interno.material.createPdfProfessor', 'uses' => 'MaterialController@createPdfProfessor']);
 Route::post('/interno/material/salvarPdf', ['as' => 'interno.material.storePdf', 'uses' => 'MaterialController@storePdf']);
@@ -73,6 +75,10 @@ Route::get('/interno/material/createVideoProfessor', ['as' => 'interno.material.
 Route::post('/interno/material/salvarVideo', ['as' => 'interno.material.storeVideo', 'uses' => 'MaterialController@storeVideo']);
 Route::post('/interno/material/salvarVideoProfessor', ['as' => 'interno.material.storeVideoProfessor', 'uses' => 'MaterialController@storeVideoProfessor']);
 Route::get('/interno/material/remove/{id}', ['as' => 'interno.material.remove', 'uses' => 'MaterialController@remove']);
+
+//ALUNO
+Route::get('/interno/aluno', ['as' => 'interno.aluno.index', 'uses' => 'MaterialController@indexAluno']);
+
 
 Route::get('/ajax-disciplina', function (){
 

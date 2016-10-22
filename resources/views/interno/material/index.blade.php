@@ -53,7 +53,7 @@
                                         <img src="{{asset('backend/dist/img/pdf.png')}}" TITLE="BAIXAR" />
                                     </a>
                                 @else
-
+                                    <img src="{{asset('backend/dist/img/video.png')}}" TITLE="VÍDEO" />
                                 @endif
 
 

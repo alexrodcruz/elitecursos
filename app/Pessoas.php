@@ -28,6 +28,7 @@ class Pessoas extends Model
                             'isAdm',
                             'isProfessor',
                             'isAluno',
-                            'ativo'
+                            'ativo',
+                            'idTurma'
                         ];
 }

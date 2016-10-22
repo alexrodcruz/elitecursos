@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -310,14 +309,33 @@
         <div class="row">
             <div class="form-group col-md-4">
                 {!! Form::label('password', 'Senha:') !!}
-                {!! Form::password('password', ['class' => 'form-control']) !!}
+                {!! Form::password('senha', ['class' => 'form-control', 'id' => 'senha']) !!}
             </div>
             <div class="form-group col-md-4">
-                {!! Form::label('confimaSenha', 'Confirma Senha:') !!}
-                {!! Form::password('confimaSenha', ['class' => 'form-control']) !!}
+                {!! Form::label('confirmaSenha', 'Confirma Senha:') !!}
+                {!! Form::password('password-confirm', ['class' => 'form-control', 'id' => 'password-confirm']) !!}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Turma Pretendida</label>
+                <select id="idTurma" name="idTurma" class="form-control">
+                    <option value="">SELECIONE</option>
+                    @if(isset($idTurma))
+                        <option value="{{$idTurma[0]['id']}}" selected>{{$idTurma[0]['nome']}}</option>
+                        @foreach($turma as $turmas)
+                            <option value="{{$turmas['id']}}">{{$turmas['nome']}}</option>
+                        @endforeach
+                    @else
+                        @foreach($turma as $turmas)
+                            <option value="{{$turmas['id']}}">{{$turmas['nome']}}</option>
+                        @endforeach
+                    @endif
+                </select>
             </div>
         </div>
         {!! Form::hidden('isAluno', 1, ['class' => 'form-control']) !!}
+        {!! Form::hidden('ativo', 2, ['class' => 'form-control']) !!}
         <div class="box-footer">
             <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
@@ -332,8 +350,7 @@
 </div>
 
 
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('backend/plugins/select2/select2.full.min.js')}}"></script>
+
 <!-- AdminLTE App -->
 <script src="{{asset('backend/dist/js/app.min.js')}}"></script>
 
@@ -343,28 +360,25 @@
 <script src="{{asset('backend/plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
 
 
+
 <script>
-
-    $(".select2").select2();
-
     $("[data-mask]").inputmask();
-</script>
 
-<script>
-
-      var password = document.getElementById("password"), confirm_password = document.getElementById("confirmaSenha");
-      function validatePassword(){
+    var password = document.getElementById("senha"), confirm_password = document.getElementById("password-confirm");
+    function validatePassword(){
         if(password.value != confirm_password.value)
         {
-          confirm_password.setCustomValidity("As Senhas devem ser Iguais!");
+            confirm_password.setCustomValidity("As Senhas devem ser Iguais!");
         }
         else
         {
-          confirm_password.setCustomValidity('');
+            confirm_password.setCustomValidity('');
         }
-      }
-      password.onchange = validatePassword;
-      confirm_password.onkeyup = validatePassword;
-    </script>
+    }
+
+    password.onchange = validatePassword;
+
+    confirm_password.onkeyup = validatePassword;
+</script>
 </body>
 </html>

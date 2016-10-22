@@ -69,6 +69,7 @@ class MaterialController extends Controller
 
     public function indexAluno()
     {
+
         $email = Auth::user()->email;
 
         $idPessoa = DB::select("SELECT id FROM pessoas WHERE email = '$email';");
@@ -92,7 +93,7 @@ class MaterialController extends Controller
 
         $material['material'] = $material;
 
-        return view('interno.material.index')->with($material);
+        return view('interno.aluno.index')->with($material);
     }
 
     public function createPdf()

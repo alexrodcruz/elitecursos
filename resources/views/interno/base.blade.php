@@ -40,10 +40,6 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
-
-
-
     <link rel="stylesheet" href="{{asset('backend/bootstrap/css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -166,6 +162,11 @@
                           </ul>
                       </li>
                       <li>
+                          <a href="{{ route('interno.matricula.pre') }}">
+                              <i class="fa fa-book"></i> <span>Pré-Inscrição</span>
+                          </a>
+                      </li>
+                      <li>
                           <a href="{{ route('interno.matricula.index') }}">
                               <i class="fa fa-book"></i> <span>Matrícula</span>
                           </a>
@@ -215,7 +216,7 @@
                   <ul class="sidebar-menu">
                       <li class="header">MENU DE ACESSO - ALUNO</li>
                       <li>
-                          <a href="{{ route('interno.material.indexAluno') }}">
+                          <a href="{{ route('interno.aluno.index') }}">
                               <i class="fa fa-folder"></i> <span>Material Didático</span>
                           </a>
                       </li>

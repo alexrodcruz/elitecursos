@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Pessoas;
+use App\Turma;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -38,12 +40,20 @@ class siteController extends Controller
 
     public function inscricao()
     {
-        return view('site/inscricao');
+        $dbTurma = new Turma();
+
+        $dataAtual = Carbon::now()->format('Y-m-d');
+
+        $turma['turma'] = $dbTurma->where('dataFim','>=', $dataAtual)->where('dataFim','>=', $dataAtual)->get()->toArray();
+
+        return view('site/inscricao')->with($turma);
     }
 
-    public function storePessoa(Request $request)
+    public function storePessoa(SiteRequest $request)
     {
         $dadosForm = $request->all();
+
+        $dadosForm['password'] = $dadosForm['senha'];
 
         $pessoa = new Pessoas();
 
@@ -83,7 +93,6 @@ class siteController extends Controller
             'isAdm' => $isAdm,
             'isProfessor' => $isProfessor,
             'isAluno' => $isAluno,
-            ''
         ]);
 
         return view('index');
