@@ -279,8 +279,6 @@
 
 
 <div class="container">
-
-
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -295,13 +293,13 @@
                 </div>
             </div>
             <div class="item">
-                <img src="http://placehold.it/1200x300/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide">
+                <img src="http://placehold.it/1140x300/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide">
                 <div class="carousel-caption">
                     Second Slide
                 </div>
             </div>
             <div class="item">
-                <img src="http://placehold.it/1200x300/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
+                <img src="http://placehold.it/1140x300/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
                 <div class="carousel-caption">
                     Third Slide
                 </div>

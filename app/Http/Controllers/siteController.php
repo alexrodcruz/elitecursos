@@ -27,7 +27,9 @@ class siteController extends Controller
 
         return view('index')->with($carousel);
         */
+
         return view('index');
+
     }
 
     public function contato()
