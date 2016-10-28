@@ -3,6 +3,8 @@
 <div class="box box-primary" xmlns="http://www.w3.org/1999/html">
     <!-- form start -->
     <div class="box-body">
+        <p style="color: red; font-size: large;">Tamanho Padrão da Imagem: 1140x300</p>
+
         <div class="row">
             <div class="form-group col-md-4">
                 {!! Form::label('descricao', 'Descrição:') !!}
