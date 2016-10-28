@@ -278,7 +278,7 @@
     </div>
 </div>
 
-<?php if($carousel): ?>
+
 <div class="container">
 
 
@@ -317,7 +317,7 @@
     </div>
 
 </div>
-<?php endif; ?>
+
 
 
 <section class="content">

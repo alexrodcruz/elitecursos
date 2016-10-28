@@ -277,7 +277,7 @@
     </div>
 </div>
 
-@if($carousel)
+
 <div class="container">
 
 
@@ -316,7 +316,7 @@
     </div>
 
 </div>
-@endif
+
 
 
 <section class="content">

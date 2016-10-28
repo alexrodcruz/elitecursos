@@ -17,6 +17,7 @@ class siteController extends Controller
 {
     public function index()
     {
+        /*
         $carousel = DB::select("SELECT *
                                   FROM carousel
                                   WHERE ativo = 1
@@ -25,7 +26,8 @@ class siteController extends Controller
         $carousel['carousel'] = $carousel;
 
         return view('index')->with($carousel);
-
+        */
+        return view('index');
     }
 
     public function contato()
