@@ -76,6 +76,13 @@ Route::post('/interno/material/salvarVideo', ['as' => 'interno.material.storeVid
 Route::post('/interno/material/salvarVideoProfessor', ['as' => 'interno.material.storeVideoProfessor', 'uses' => 'MaterialController@storeVideoProfessor']);
 Route::get('/interno/material/remove/{id}', ['as' => 'interno.material.remove', 'uses' => 'MaterialController@remove']);
 
+//GESTÃO CAROUSEL
+Route::get('/interno/carousel', ['as' => 'interno.carousel.index', 'uses' => 'CarouselController@index']);
+Route::get('/interno/carousel/create', ['as' => 'interno.carousel.create', 'uses' => 'CarouselController@create']);
+Route::post('/interno/carousel/salvar', ['as' => 'interno.carousel.store', 'uses' => 'CarouselController@store']);
+Route::get('/interno/carousel/edit/{id}', ['as' => 'interno.carousel.edit', 'uses' => 'CarouselController@edit']);
+Route::put('/interno/carousel/update/{id}', ['as' => 'interno.carousel.update', 'uses' => 'CarouselController@update']);
+
 //ALUNO
 Route::get('/interno/aluno', ['as' => 'interno.aluno.index', 'uses' => 'MaterialController@indexAluno']);
 

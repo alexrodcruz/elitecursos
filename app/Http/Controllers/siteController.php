@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Carousel;
 use App\Pessoas;
 use App\Turma;
 use App\User;
@@ -10,12 +11,21 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\SiteRequest;
+use Illuminate\Support\Facades\DB;
 
 class siteController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $carousel = DB::select("SELECT *
+                                  FROM carousel
+                                  WHERE ativo = 1
+                                  limit 3;");
+
+        $carousel['carousel'] = $carousel;
+
+        return view('index')->with($carousel);
+
     }
 
     public function contato()

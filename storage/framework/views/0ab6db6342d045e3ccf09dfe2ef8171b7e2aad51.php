@@ -3,18 +3,18 @@
 <html>
 <head>
     <title>Elite Cursos</title>
-    <link href="{{asset('site/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
+    <link href="<?php echo e(asset('site/css/bootstrap.css')); ?>" rel="stylesheet" type="text/css" media="all" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{{asset('site/js/jquery.min.js')}}"></script>
+    <script src="<?php echo e(asset('site/js/jquery.min.js')); ?>"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="{{asset('site/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
+    <link href="<?php echo e(asset('site/css/style.css')); ?>" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!---->
-    <script src="{{asset('site/js/bootstrap.min.js')}}"></script>
+    <script src="<?php echo e(asset('site/js/bootstrap.min.js')); ?>"></script>
     <link href='//fonts.googleapis.com/css?family=Catamaran:400,100,300,500,700,600,800,900' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
@@ -25,31 +25,31 @@
 
 
 
-    <link rel="stylesheet" href="{{asset('backend/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/bootstrap/css/bootstrap.min.css')); ?>">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('backend/dist/css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/dist/css/AdminLTE.min.css')); ?>">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{{asset('backend/dist/css/skins/_all-skins.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/dist/css/skins/_all-skins.min.css')); ?>">
     <!-- iCheck -->
-    <link rel="stylesheet" href="{{asset('backend/plugins/iCheck/flat/blue.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/plugins/iCheck/flat/blue.css')); ?>">
     <!-- Morris chart -->
-    <link rel="stylesheet" href="{{asset('backend/plugins/morris/morris.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/plugins/morris/morris.css')); ?>">
     <!-- jvectormap -->
-    <link rel="stylesheet" href="{{asset('backend/plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/plugins/jvectormap/jquery-jvectormap-1.2.2.css')); ?>">
     <!-- Date Picker -->
-    <link rel="stylesheet" href="{{asset('backend/plugins/datepicker/datepicker3.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/plugins/datepicker/datepicker3.css')); ?>">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{asset('backend/plugins/daterangepicker/daterangepicker-bs3.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/plugins/daterangepicker/daterangepicker-bs3.css')); ?>">
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="{{asset('backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')); ?>">
     <!-- SELECT 2 -->
-    <link rel="stylesheet" href="{{asset('backend/plugins/select2/select2.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/plugins/select2/select2.min.css')); ?>">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,18 +58,18 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" href="{{asset('backend/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/bootstrap/css/bootstrap.min.css')); ?>">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{asset('backend/plugins/datatables/dataTables.bootstrap.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/plugins/datatables/dataTables.bootstrap.css')); ?>">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('backend/dist/css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/dist/css/AdminLTE.min.css')); ?>">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{{asset('backend/dist/css/skins/_all-skins.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('backend/dist/css/skins/_all-skins.min.css')); ?>">
 
 
 
@@ -84,7 +84,7 @@
     <div class="container">
         <div class="head-top">
             <div class="logo">
-                <a href="index.html"><img src="{{asset('site/images/bo.png')}}" alt=""></a>
+                <a href="index.html"><img src="<?php echo e(asset('site/images/bo.png')); ?>" alt=""></a>
                 <!-- <a href="index.html"><img src="images/bo.png" alt="" title="Academic"></a> -->
             </div>
             <div class="login">
@@ -112,34 +112,35 @@
                         <div class="login-right">
                             <h3>Área Restrita </h3>
 
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                                {{ csrf_field() }}
+                            <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/login')); ?>">
+                                <?php echo e(csrf_field()); ?>
 
-                                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+
+                                <div class="form-group<?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
                                     <label for="email" class="col-md-4 control-label">E-Mail</label>
 
                                     <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                        <input id="email" type="email" class="form-control" name="email" value="<?php echo e(old('email')); ?>" required autofocus>
 
-                                        @if ($errors->has('email'))
+                                        <?php if($errors->has('email')): ?>
                                             <span class="help-block">
-                                                            <strong>{{ $errors->first('email') }}</strong>
+                                                            <strong><?php echo e($errors->first('email')); ?></strong>
                                                         </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
 
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <div class="form-group<?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
                                     <label for="password" class="col-md-4 control-label">Senha</label>
 
                                     <div class="col-md-6">
                                         <input id="password" type="password" class="form-control" name="password" required>
 
-                                        @if ($errors->has('password'))
+                                        <?php if($errors->has('password')): ?>
                                             <span class="help-block">
-                                                            <strong>{{ $errors->first('password') }}</strong>
+                                                            <strong><?php echo e($errors->first('password')); ?></strong>
                                                         </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
 
@@ -159,7 +160,7 @@
                                             Entrar
                                         </button>
 
-                                        <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                        <a class="btn btn-link" href="<?php echo e(url('/password/reset')); ?>">
                                             Recuperar Senha?
                                         </a>
                                     </div>
@@ -277,7 +278,7 @@
     </div>
 </div>
 
-@if($carousel)
+<?php if($carousel): ?>
 <div class="container">
 
 
@@ -316,46 +317,46 @@
     </div>
 
 </div>
-@endif
+<?php endif; ?>
 
 
 <section class="content">
 
-    @yield('conteudo')
+    <?php echo $__env->yieldContent('conteudo'); ?>
 
 </section>
 
 
 
 
-<script src="{{asset('backend/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="<?php echo e(asset('backend/bootstrap/js/bootstrap.min.js')); ?>"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="{{asset('backend/plugins/morris/morris.min.js')}}"></script>
+<script src="<?php echo e(asset('backend/plugins/morris/morris.min.js')); ?>"></script>
 <!-- Sparkline -->
-<script src="{{asset('backend/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
+<script src="<?php echo e(asset('backend/plugins/sparkline/jquery.sparkline.min.js')); ?>"></script>
 <!-- jvectormap -->
-<script src="{{asset('backend/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
-<script src="{{asset('backend/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
+<script src="<?php echo e(asset('backend/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')); ?>"></script>
+<script src="<?php echo e(asset('backend/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')); ?>"></script>
 <!-- jQuery Knob Chart -->
-<script src="{{asset('backend/plugins/knob/jquery.knob.js')}}"></script>
+<script src="<?php echo e(asset('backend/plugins/knob/jquery.knob.js')); ?>"></script>
 <!-- daterangepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-<script src="{{asset('backend/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<script src="<?php echo e(asset('backend/plugins/daterangepicker/daterangepicker.js')); ?>"></script>
 <!-- datepicker -->
-<script src="{{asset('backend/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+<script src="<?php echo e(asset('backend/plugins/datepicker/bootstrap-datepicker.js')); ?>"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script src="{{asset('backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+<script src="<?php echo e(asset('backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')); ?>"></script>
 <!-- Slimscroll -->
-<script src="{{asset('backend/plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
+<script src="<?php echo e(asset('backend/plugins/slimScroll/jquery.slimscroll.min.js')); ?>"></script>
 <!-- FastClick -->
-<script src="{{asset('backend/plugins/fastclick/fastclick.min.js')}}"></script>
+<script src="<?php echo e(asset('backend/plugins/fastclick/fastclick.min.js')); ?>"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('backend/dist/js/app.min.js')}}"></script>
+<script src="<?php echo e(asset('backend/dist/js/app.min.js')); ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('backend/dist/js/pages/dashboard.js')}}"></script>
+<script src="<?php echo e(asset('backend/dist/js/pages/dashboard.js')); ?>"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{asset('backend/dist/js/demo.js')}}"></script>
+<script src="<?php echo e(asset('backend/dist/js/demo.js')); ?>"></script>
 
 </body>
 </html>
