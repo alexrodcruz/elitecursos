@@ -108,7 +108,9 @@ class siteController extends Controller
             'isAluno' => $isAluno,
         ]);
 
-        return view('index');
+
+        $carousel['carousel'] = null;
+        return view('index')->with($carousel);
     }
 
 }
