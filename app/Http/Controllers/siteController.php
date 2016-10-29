@@ -29,22 +29,26 @@ class siteController extends Controller
 
     public function contato()
     {
-        return view('site/contato');
+        $carousel['carousel'] = null;
+        return view('site/contato')->with($carousel);
     }
 
     public function depoimentos()
     {
-        return view('site/depoimentos');
+        $carousel['carousel'] = null;
+        return view('site/depoimentos')->with($carousel);
     }
 
     public function professores()
     {
-        return view('site/professores');
+        $carousel['carousel'] = null;
+        return view('site/professores')->with($carousel);
     }
 
     public function institucional()
     {
-        return view('site/institucional');
+        $carousel['carousel'] = null;
+        return view('site/institucional')->with($carousel);
     }
 
     public function inscricao()
