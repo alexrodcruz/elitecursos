@@ -35,8 +35,8 @@
                     <?php $__currentLoopData = $carousel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $carousels): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                         <tr>
                             <td align="center">
-                                <a href="<?php echo e(route('interno.turma.edit', ['id' => $carousels['id'] ])); ?>">
-                                    <img src="<?php echo e(asset('backend/dist/img/edit.png')); ?>" TITLE="EDITAR TURMA">
+                                <a href="<?php echo e(route('interno.carousel.destroy', ['id' => $carousels['id'] ])); ?>">
+                                    <img src="<?php echo e(asset('backend/dist/img/inativo.png')); ?>" TITLE="EXCLUIR CAROUSEL">
                                 </a>
                             </td>
                             <td align="center"><?php echo e($carousels['descricao']); ?></td>

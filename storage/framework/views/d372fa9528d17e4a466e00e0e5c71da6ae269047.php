@@ -196,6 +196,7 @@
                           </a>
                           <ul class="treeview-menu">
                               <li><a href="<?php echo e(route('interno.carousel.index')); ?>"><i class="fa fa-circle-o"></i> Carousel</a></li>
+                              <li><a href="<?php echo e(route('interno.institucional.index')); ?>"><i class="fa fa-circle-o"></i> Institucional</a></li>
                           </ul>
                       </li>
                   </ul>
@@ -313,7 +314,10 @@
     <script src="<?php echo e(asset('backend/plugins/input-mask/jquery.inputmask.date.extensions.js')); ?>"></script>
     <script src="<?php echo e(asset('backend/plugins/input-mask/jquery.inputmask.extensions.js')); ?>"></script>
 
-
+    <!-- CK Editor -->
+    <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="<?php echo e(asset('backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')); ?>"></script>
 
 
     <script>
@@ -380,6 +384,15 @@
         })
 
       })
+    </script>
+    <script>
+        $(function () {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            CKEDITOR.replace('conteudo');
+            //bootstrap WYSIHTML5 - text editor
+            $(".textarea").wysihtml5();
+        });
     </script>
   </body>
 </html>
