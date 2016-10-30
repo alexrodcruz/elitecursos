@@ -4,9 +4,10 @@
 <!-- contact -->
     
         <div class="container">
-            <div class="contact-head">
-                <h2 >Contato</h2>
-            </div>
+                <h2 align="center">
+                    Contato -
+                    <small>Para nós, o que importa é a sua aprovação!</small>
+                </h2>
             <div class="contact-grids">
                 <div class="col-md-8 map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d3910.7380391518773!2d-61.45707988576659!3d-11.426549941882373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d-11.4252868!2d-61.4549649!4m5!1s0x93c82f11d9126ba9%3A0xb1697e3a21d2e14!2sElite+Cursos+Preparat%C3%B3rios+-+Avenida+Belo+Horizonte%2C+3105+-+Liberdade%2C+Cacoal+-+RO!3m2!1d-11.4278128!2d-61.4549641!5e0!3m2!1spt-BR!2sbr!4v1477853643568"  allowfullscreen></iframe>
