@@ -16,7 +16,7 @@ class CreateInstitucionalTable extends Migration
         Schema::create('institucional', function (Blueprint $table) {
             $table->increments('id')->unique();
             $table->string('descricao',500);
-            $table->string('conteudo',1000);
+            $table->longText('conteudo');
             $table->timestamps();
         });
     }

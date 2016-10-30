@@ -1,6 +1,4 @@
-@extends('app')
-
-@section('conteudo')
+<?php $__env->startSection('conteudo'); ?>
 <!-- contact -->
     
         <div class="container">
@@ -36,7 +34,8 @@
                 </div>
                 <div class="clearfix"> </div>
             </div>
-            {!! Form::open(['route' => 'site.montaEmailContato', 'method' => 'post', 'id' => 'formContato']) !!}
+            <?php echo Form::open(['route' => 'site.montaEmailContato', 'method' => 'post', 'id' => 'formContato']); ?>
+
                 <div class="contact-grids1">
                     <div class="contact-me ">
                         <h4 style="color: black;">Message</h4>
@@ -55,6 +54,9 @@
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-            {!! Form::close() !!}
+            <?php echo Form::close(); ?>
+
         </div>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
