@@ -1,6 +1,4 @@
-@extends('interno.base')
-
-@section('conteudo')
+<?php $__env->startSection('conteudo'); ?>
 
 
     <section class="content-header">
@@ -16,15 +14,15 @@
         <div class="box-header">
             <h3 class="box-title">
 
-                <a href="{{ route('interno.carousel.create') }}">
-                    <img src="{{asset('backend/dist/img/add.png')}}" TITLE="ADICIONAR TURMA">
+                <a href="<?php echo e(route('interno.carousel.create')); ?>">
+                    <img src="<?php echo e(asset('backend/dist/img/add.png')); ?>" TITLE="ADICIONAR TURMA">
                 </a>
 
 
             </h3>
         </div><!-- /.box-header -->
         <div class="box-body">
-            @if( isset($carousel) )
+            <?php if( isset($carousel) ): ?>
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
@@ -34,21 +32,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($carousel as $carousels)
+                    <?php $__currentLoopData = $carousel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $carousels): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                         <tr>
                             <td align="center">
-                                <a href="{{ route('interno.carousel.destroy', ['id' => $carousels['id'] ]) }}">
-                                    <img src="{{asset('backend/dist/img/inativo.png')}}" TITLE="EXCLUIR CAROUSEL">
+                                <a href="<?php echo e(route('interno.carousel.destroy', ['id' => $carousels['id'] ])); ?>">
+                                    <img src="<?php echo e(asset('backend/dist/img/inativo.png')); ?>" TITLE="EXCLUIR CAROUSEL">
                                 </a>
                             </td>
-                            <td align="center">{{$carousels['descricao']}}</td>
-                            <td align="center">{{$carousels['ativo']}}</td>
+                            <td align="center"><?php echo e($carousels['descricao']); ?></td>
+                            <td align="center"><?php echo e($carousels['ativo']); ?></td>
                         </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                 </table>
-                    @else
+                    <?php else: ?>
                         <h4 style="color:red"> Não existem Imagens Cadastradas.</h4>
-                    @endif
+                    <?php endif; ?>
         </div><!-- /.box-body -->
     </div><!-- /.box -->
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('interno.base', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

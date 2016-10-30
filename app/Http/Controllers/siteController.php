@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Carousel;
+use App\Institucional;
 use App\Pessoas;
 use App\Turma;
 use App\User;
@@ -48,6 +49,11 @@ class siteController extends Controller
     public function institucional()
     {
         $carousel['carousel'] = null;
+
+        $dbInstitucional = new Institucional();
+
+        $carousel['institucional'] = $dbInstitucional->all();
+
         return view('site/institucional')->with($carousel);
     }
 

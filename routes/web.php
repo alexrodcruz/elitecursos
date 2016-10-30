@@ -82,6 +82,16 @@ Route::get('/interno/carousel/create', ['as' => 'interno.carousel.create', 'uses
 Route::post('/interno/carousel/salvar', ['as' => 'interno.carousel.store', 'uses' => 'CarouselController@store']);
 Route::get('/interno/carousel/edit/{id}', ['as' => 'interno.carousel.edit', 'uses' => 'CarouselController@edit']);
 Route::put('/interno/carousel/update/{id}', ['as' => 'interno.carousel.update', 'uses' => 'CarouselController@update']);
+Route::get('/interno/carousel/destroy/{id}', ['as' => 'interno.carousel.destroy', 'uses' => 'CarouselController@destroy']);
+
+//GESTÃO INSTITUCIONAL
+Route::get('/interno/institucional', ['as' => 'interno.institucional.index', 'uses' => 'InstitucionalController@index']);
+Route::get('/interno/institucional/create', ['as' => 'interno.institucional.create', 'uses' => 'InstitucionalController@create']);
+Route::post('/interno/institucional/salvar', ['as' => 'interno.institucional.store', 'uses' => 'InstitucionalController@store']);
+Route::get('/interno/institucional/edit/{id}', ['as' => 'interno.institucional.edit', 'uses' => 'InstitucionalController@edit']);
+Route::put('/interno/institucional/update/{id}', ['as' => 'interno.institucional.update', 'uses' => 'InstitucionalController@update']);
+Route::get('/interno/institucional/destroy/{id}', ['as' => 'interno.institucional.destroy', 'uses' => 'InstitucionalController@destroy']);
+
 
 //ALUNO
 Route::get('/interno/aluno', ['as' => 'interno.aluno.index', 'uses' => 'MaterialController@indexAluno']);
