@@ -12,7 +12,7 @@
                     </div>
                     <div class="ser-top ">
                         <h5><?php echo e($institucionals->descricao); ?></h5>
-                        <?php echo e($institucionals->conteudo); ?>
+                        <?php echo e(str_replace(array('<p>','</p>'),'',$institucionals->conteudo)); ?>
 
                     </div>
                     <div class="clearfix"> </div>

@@ -14,7 +14,7 @@
                     </div>
                     <div class="ser-top ">
                         <h5>{{ $institucionals->descricao }}</h5>
-                        {{ $institucionals->conteudo }}
+                        {{str_replace(array('<p>','</p>'),'',$institucionals->conteudo)}}
                     </div>
                     <div class="clearfix"> </div>
                 </div>
