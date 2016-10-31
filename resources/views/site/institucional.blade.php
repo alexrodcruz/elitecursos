@@ -14,9 +14,9 @@
                     </div>
                     <div class="ser-top ">
                         <h5>{{ $institucionals->descricao }}</h5>
-                        {{str_replace(array('<p>','</p>'),'',$institucionals->conteudo)}}
+                        {!! $institucionals->conteudo !!}
                     </div>
-                    <div class="clearfix"> </div>
+                    <div class="clearfix"></div>
                 </div>
             @endforeach
         @endif

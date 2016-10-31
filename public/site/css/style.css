@@ -821,7 +821,7 @@ background:#E8E8E8;
 	width:100%;
 }
 .contact-me textarea{
-	min-height:300px;
+	min-height:100px;
 	resize:none;
 }
 .contact-me{

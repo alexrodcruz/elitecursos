@@ -21,7 +21,7 @@ Route::get('/contato', 'siteController@contato');
 Route::get('/depoimentos', 'siteController@depoimentos');
 Route::get('/professores', 'siteController@professores');
 Route::get('/institucional', 'siteController@institucional');
-Route::post('/site/montaEmailContato', ['as' => 'site.montaEmailContato', 'uses' => 'SiteController@montaEmailContato']);
+Route::post('/montaEmailContato', ['as' => 'montaEmailContato', 'uses' => 'SiteController@montaEmailContato']);
 
 Route::get('/inscricao', 'siteController@inscricao');
 Route::post('/inscricao/salvar', ['as' => 'inscricao.storePessoa', 'uses' => 'siteController@storePessoa']);

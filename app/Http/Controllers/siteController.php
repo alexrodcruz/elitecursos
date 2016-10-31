@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\SiteRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class siteController extends Controller
 {
@@ -121,21 +122,23 @@ class siteController extends Controller
 
     public function montaEmailContato(Request $request)
     {
-        dd($request);
 
         $dadosForm = $request->all();
         $data = array();
-        $data['Message'] = $dadosForm['NOME'];
-        $data['Name'] = $dadosForm['EMAIL'];
-        $data['Email'] = $dadosForm['MESSAGE'];
-        Mail::send('login.emailContato', $data, function ($m)
+        $data['MENSAGEM'] = $dadosForm['Message'];
+        $data['NOME'] = $dadosForm['Name'];
+        $data['EMAIL'] = $dadosForm['Email'];
+        $data['TELEFONE'] = $dadosForm['Telefone'];
+
+        Mail::send('emailContato', $data, function ($m)
         {
-            $m->from('contato@frtp.org.br', 'Contato feito pelo site da FRTP - Federação Rondoniense de Tiro Prático');
-            $m->to('adm.frtp@gmail.com')
-                ->subject('Contato Site');
+            $m->from('elitecursospreparatorios@gmail.com', 'Contato feito pelo site ELITECURSOSEAD.COM');
+            $m->to('cursoelite@live.com')
+                ->subject('Contato Site ELITE CURSOS');
         });
-        Toast::success('Contato efetuado. Obrigado!');
-        return view('index');
+
+        $carousel['carousel'] = null;
+        return view('index')->with($carousel);
     }
 
 }

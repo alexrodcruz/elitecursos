@@ -12,10 +12,10 @@
                     </div>
                     <div class="ser-top ">
                         <h5><?php echo e($institucionals->descricao); ?></h5>
-                        <?php echo e(str_replace(array('<p>','</p>'),'',$institucionals->conteudo)); ?>
+                        <?php echo $institucionals->conteudo; ?>
 
                     </div>
-                    <div class="clearfix"> </div>
+                    <div class="clearfix"></div>
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
         <?php endif; ?>
