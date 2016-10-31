@@ -2,59 +2,61 @@
 <!-- contact -->
     
         <div class="container">
-            <div class="contact-head">
-                <h2 >Contato</h2>
-                <p> Frase que incentive o contato, seja para duvida, sugestão ou críticas.</p>          
-            </div>
+                <h2 align="center">
+                    Contato -
+                    <small>Para nós, o que importa é a sua aprovação!</small>
+                </h2>
             <div class="contact-grids">
                 <div class="col-md-8 map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2473478.1088362797!2d-107.97470132744915!3d52.74110675936634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5304f6bf47ed992b%3A0x05049e3295772690!2sSaskatoon%2C+SK%2C+Canada!5e0!3m2!1sen!2sin!4v1460541578241"  allowfullscreen></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d3910.7380391518773!2d-61.45707988576659!3d-11.426549941882373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d-11.4252868!2d-61.4549649!4m5!1s0x93c82f11d9126ba9%3A0xb1697e3a21d2e14!2sElite+Cursos+Preparat%C3%B3rios+-+Avenida+Belo+Horizonte%2C+3105+-+Liberdade%2C+Cacoal+-+RO!3m2!1d-11.4278128!2d-61.4549641!5e0!3m2!1spt-BR!2sbr!4v1477853643568"  allowfullscreen></iframe>
                 </div>
                 <div class="col-md-4 con-grid">
                     <div class="contact-grid1">
                         <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
                         <div class="con-ic">
-                            <p>Rua tal, 45 Bairro etc <span>Brasil.</span></p>
+                            <p>Av. Belo Horizonte, 3105 Bairro Novo Cacoal <span>Cacoal/RO - Brasil.</span></p>
                         </div>
                             <div class="clearfix"> </div>
                     </div>
                     <div class="contact-grid contact-grid1">
                         <i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>
                         <div class="con-ic">
-                            <p>+1234 758 839<span>+1273 748 730</span></p>
+                            <p>+55 69 3441-1513<span>+55 69 99264-9373</span></p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
                     <div class="contact-grid1">
                         <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
                         <div class="con-ic">
-                            <p><a href="mailto:info@example.com">info@example1.com</a><span><a href="mailto:info@example.com">info@example2.com</a></span></p>
+                            <p><a href="mailto:alves.era@hotmail.com">alves.era@hotmail.com</a></p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
                 </div>
                 <div class="clearfix"> </div>
-            </div>          
-            <form action="#" method="post">
+            </div>
+            <?php echo Form::open(['route' => 'site.montaEmailContato', 'method' => 'post', 'id' => 'formContato']); ?>
+
                 <div class="contact-grids1">
                     <div class="contact-me ">
-                        <h4>Message</h4>
-                        <textarea  name="Message"  placeholder="" required=""> </textarea>
+                        <h4 style="color: black;">Message</h4>
+                        <textarea id="Message" name="Message"  placeholder="" required=""> </textarea>
                     </div>
                     <div class="col-md-5 contact-form1">
-                        <h4>Name</h4>
-                        <input type="text" name="Name" placeholder="" required="">
+                        <h4 style="color: black;">Name</h4>
+                        <input type="text" name="Name" name="Name" placeholder="" required="">
                     </div>
                     <div class="col-md-5 contact-form1">
-                        <h4>Email</h4>
-                        <input type="email" name="Email" placeholder="" required="">
+                        <h4 style="color: black;">Email</h4>
+                        <input type="email" name="Email" name="Email" placeholder="" required="">
                     </div>
                     <div class="col-md-2 contact-form">
                         <input type="submit" value="Enviar" >
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-                </form>
+            <?php echo Form::close(); ?>
+
         </div>
 <?php $__env->stopSection(); ?>
 
