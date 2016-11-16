@@ -78,7 +78,7 @@ Route::get('/interno/material/indexProfessor', ['as' => 'interno.material.indexP
 Route::get('/interno/material/create', ['as' => 'interno.material.create', 'uses' => 'MaterialController@create']);
 Route::get('/interno/material/createProfessor', ['as' => 'interno.material.createProfessor', 'uses' => 'MaterialController@createProfessor']);
 Route::post('/interno/material/salvar', ['as' => 'interno.material.store', 'uses' => 'MaterialController@store']);
-Route::post('/interno/material/salvar', ['as' => 'interno.material.storeProfessor', 'uses' => 'MaterialController@storeProfessor']);
+Route::post('/interno/material/salvarProfessor', ['as' => 'interno.material.storeProfessor', 'uses' => 'MaterialController@storeProfessor']);
 Route::get('/interno/material/remove/{id}', ['as' => 'interno.material.remove', 'uses' => 'MaterialController@remove']);
 
 //GESTÃO CAROUSEL

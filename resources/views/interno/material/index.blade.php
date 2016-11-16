@@ -20,6 +20,10 @@
                         <a href="{{ route('interno.material.createProfessor') }}">
                             <img src="{{asset('backend/dist/img/add.png')}}" TITLE="INCLUIR MATERIAL">
                         </a>
+                    @else
+                        <a href="{{ route('interno.material.create') }}">
+                            <img src="{{asset('backend/dist/img/add.png')}}" TITLE="INCLUIR MATERIAL">
+                        </a>
                     @endif
                 @else
                     <a href="{{ route('interno.material.create') }}">

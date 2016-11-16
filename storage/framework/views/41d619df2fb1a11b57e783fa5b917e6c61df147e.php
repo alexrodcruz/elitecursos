@@ -18,6 +18,10 @@
                         <a href="<?php echo e(route('interno.material.createProfessor')); ?>">
                             <img src="<?php echo e(asset('backend/dist/img/add.png')); ?>" TITLE="INCLUIR MATERIAL">
                         </a>
+                    <?php else: ?>
+                        <a href="<?php echo e(route('interno.material.create')); ?>">
+                            <img src="<?php echo e(asset('backend/dist/img/add.png')); ?>" TITLE="INCLUIR MATERIAL">
+                        </a>
                     <?php endif; ?>
                 <?php else: ?>
                     <a href="<?php echo e(route('interno.material.create')); ?>">
