@@ -160,8 +160,15 @@
                           <ul class="treeview-menu">
                               <li><a href="<?php echo e(route('interno.pessoas.index')); ?>"><i class="fa fa-circle-o"></i> Pessoa</a></li>
                               <li><a href="<?php echo e(route('interno.turma.index')); ?>"><i class="fa fa-circle-o"></i> Turma</a></li>
-                              <li><a href="<?php echo e(route('interno.disciplina.index')); ?>"><i class="fa fa-circle-o"></i> Disciplina</a></li>
+                              <li>
+                                  <a href="#"><i class="fa fa-circle-o"></i> Disciplina <i class="fa fa-angle-left pull-right"></i></a>
+                                  <ul class="treeview-menu">
+                                      <li><a href="<?php echo e(route('interno.disciplina.index')); ?>"><i class="fa fa-circle-o"></i> Disciplina</a></li>
+                                      <li><a href="<?php echo e(route('interno.assunto.index')); ?>"><i class="fa fa-circle-o"></i> Assunto</a></li>
+                                  </ul>
+                              </li>
                           </ul>
+
                       </li>
                       <li>
                           <a href="<?php echo e(route('interno.matricula.pre')); ?>">
@@ -180,13 +187,7 @@
                           </a>
                           <ul class="treeview-menu">
                               <li><a href="<?php echo e(route('interno.material.index')); ?>"><i class="fa fa-circle-o"></i> Consultar</a></li>
-                              <li>
-                                  <a href="#"><i class="fa fa-circle-o"></i> Enviar <i class="fa fa-angle-left pull-right"></i></a>
-                                  <ul class="treeview-menu">
-                                      <li><a href="<?php echo e(route('interno.material.createPdf')); ?>"><i class="fa fa-circle-o"></i> PDF</a></li>
-                                      <li><a href="<?php echo e(route('interno.material.createVideo')); ?>"><i class="fa fa-circle-o"></i> Vídeo</a></li>
-                                  </ul>
-                              </li>
+                              <li><a href="<?php echo e(route('interno.material.create')); ?>"><i class="fa fa-circle-o"></i> Cadastrar</a></li>
                           </ul>
                       </li>
                       <li class="treeview">
@@ -213,13 +214,7 @@
                           </a>
                           <ul class="treeview-menu">
                               <li><a href="<?php echo e(route('interno.material.indexProfessor')); ?>"><i class="fa fa-circle-o"></i> Consultar</a></li>
-                              <li>
-                                  <a href="#"><i class="fa fa-circle-o"></i> Enviar <i class="fa fa-angle-left pull-right"></i></a>
-                                  <ul class="treeview-menu">
-                                      <li><a href="<?php echo e(route('interno.material.createPdfProfessor')); ?>"><i class="fa fa-circle-o"></i> PDF</a></li>
-                                      <li><a href="<?php echo e(route('interno.material.createVideoProfessor')); ?>"><i class="fa fa-circle-o"></i> Vídeo</a></li>
-                                  </ul>
-                              </li>
+                              <li><a href="<?php echo e(route('interno.material.createProfessor')); ?>"><i class="fa fa-circle-o"></i> Cadastrar</a></li>
                           </ul>
                       </li>
                   </ul>
@@ -227,10 +222,29 @@
               <?php if( Auth::user()->isAluno == 1 ): ?>
                   <ul class="sidebar-menu">
                       <li class="header">MENU DE ACESSO - ALUNO</li>
-                      <li>
-                          <a href="<?php echo e(route('interno.aluno.index')); ?>">
+                      <li class="treeview">
+                          <a href="#">
                               <i class="fa fa-folder"></i> <span>Material Didático</span>
+                              <i class="fa fa-angle-left pull-right"></i>
                           </a>
+                          <?php if( isset($turmasAluno) ): ?>
+                              <ul class="treeview-menu">
+                                  <li>
+                                  <?php $__currentLoopData = $turmasAluno; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $turmasAlunos): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                                      <a href="#"><i class="fa fa-circle-o"></i> <?php echo e($turmasAlunos->nomeTurma); ?> <i class="fa fa-angle-left pull-right"></i></a>
+                                      <ul class="treeview-menu">
+                                      <?php $__currentLoopData = $disciplinaAluno; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $disciplinaAlunos): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                                          <?php if($turmasAlunos->nomeTurma == $disciplinaAlunos->nomeTurma): ?>
+                                             <li><a href="<?php echo e(route('interno.aluno.index')); ?>?idDisciplina=<?php echo e($disciplinaAlunos->idDisciplina); ?>&idTurma=<?php echo e($disciplinaAlunos->idTurma); ?>"><i class="fa fa-circle-o"></i> <?php echo e($disciplinaAlunos->nomeDisciplina); ?></a></li>
+                                          <?php endif; ?>
+                                      <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                                      </ul>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                                  </li>
+                              </ul>
+                          <?php else: ?>
+
+                          <?php endif; ?>
                       </li>
                   </ul>
               <?php endif; ?>
@@ -384,6 +398,30 @@
         })
 
       })
+    </script>
+    <script>
+        $('#idDisciplina').on('change',function(e){
+
+            console.log(e);
+
+            var idDisciplina = e.target.value
+            var idProfessor =  document.getElementById('idProfessor').value
+
+            //ajax
+            $.get('/ajax-assunto?idDisciplina='+idDisciplina+'&idProfessor='+idProfessor, function(data){
+
+                $('#idAssunto').empty();
+
+                $('#idAssunto').append('<option></option>')
+                $.each(data, function(index, assuntoObj){
+
+
+                    $('#idAssunto').append('<option value="'+assuntoObj.id+'">'+assuntoObj.descricao+'</option>')
+
+                });
+
+            })
+        })
     </script>
     <script>
         $(function () {

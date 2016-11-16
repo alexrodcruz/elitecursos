@@ -13,6 +13,7 @@
 
 
 //FRONTEND
+use App\Assunto;
 use Illuminate\Support\Facades\Input;
 use App\Disciplina;
 
@@ -54,6 +55,13 @@ Route::post('/interno/disciplina/salvar', ['as' => 'interno.disciplina.store', '
 Route::get('/interno/disciplina/edit/{id}', ['as' => 'interno.disciplina.edit', 'uses' => 'DisciplinaController@edit']);
 Route::put('/interno/disciplina/update/{id}', ['as' => 'interno.disciplina.update', 'uses' => 'DisciplinaController@update']);
 
+//GESTÃO DE ASSUNTO
+Route::get('/interno/assunto', ['as' => 'interno.assunto.index', 'uses' => 'AssuntoController@index']);
+Route::get('/interno/assunto/create', ['as' => 'interno.assunto.create', 'uses' => 'AssuntoController@create']);
+Route::post('/interno/assunto/salvar', ['as' => 'interno.assunto.store', 'uses' => 'AssuntoController@store']);
+Route::get('/interno/assunto/edit/{id}', ['as' => 'interno.assunto.edit', 'uses' => 'AssuntoController@edit']);
+Route::put('/interno/assunto/update/{id}', ['as' => 'interno.assunto.update', 'uses' => 'AssuntoController@update']);
+
 //MATRÍCULA
 Route::get('/interno/matricula', ['as' => 'interno.matricula.index', 'uses' => 'MatriculaController@index']);
 Route::get('/interno/matricula/create', ['as' => 'interno.matricula.create', 'uses' => 'MatriculaController@create']);
@@ -67,14 +75,10 @@ Route::get('/interno/matricula/pre', ['as' => 'interno.matricula.pre', 'uses' =>
 //MATERIAL DIDÁTICO
 Route::get('/interno/material', ['as' => 'interno.material.index', 'uses' => 'MaterialController@index']);
 Route::get('/interno/material/indexProfessor', ['as' => 'interno.material.indexProfessor', 'uses' => 'MaterialController@indexProfessor']);
-Route::get('/interno/material/createPdf', ['as' => 'interno.material.createPdf', 'uses' => 'MaterialController@createPdf']);
-Route::get('/interno/material/createPdfProfessor', ['as' => 'interno.material.createPdfProfessor', 'uses' => 'MaterialController@createPdfProfessor']);
-Route::post('/interno/material/salvarPdf', ['as' => 'interno.material.storePdf', 'uses' => 'MaterialController@storePdf']);
-Route::post('/interno/material/salvarPdfProfessor', ['as' => 'interno.material.storePdfProfessor', 'uses' => 'MaterialController@storePdfProfessor']);
-Route::get('/interno/material/createVideo', ['as' => 'interno.material.createVideo', 'uses' => 'MaterialController@createVideo']);
-Route::get('/interno/material/createVideoProfessor', ['as' => 'interno.material.createVideoProfessor', 'uses' => 'MaterialController@createVideoProfessor']);
-Route::post('/interno/material/salvarVideo', ['as' => 'interno.material.storeVideo', 'uses' => 'MaterialController@storeVideo']);
-Route::post('/interno/material/salvarVideoProfessor', ['as' => 'interno.material.storeVideoProfessor', 'uses' => 'MaterialController@storeVideoProfessor']);
+Route::get('/interno/material/create', ['as' => 'interno.material.create', 'uses' => 'MaterialController@create']);
+Route::get('/interno/material/createProfessor', ['as' => 'interno.material.createProfessor', 'uses' => 'MaterialController@createProfessor']);
+Route::post('/interno/material/salvar', ['as' => 'interno.material.store', 'uses' => 'MaterialController@store']);
+Route::post('/interno/material/salvar', ['as' => 'interno.material.storeProfessor', 'uses' => 'MaterialController@storeProfessor']);
 Route::get('/interno/material/remove/{id}', ['as' => 'interno.material.remove', 'uses' => 'MaterialController@remove']);
 
 //GESTÃO CAROUSEL
@@ -92,7 +96,6 @@ Route::post('/interno/institucional/salvar', ['as' => 'interno.institucional.sto
 Route::get('/interno/institucional/edit/{id}', ['as' => 'interno.institucional.edit', 'uses' => 'InstitucionalController@edit']);
 Route::put('/interno/institucional/update/{id}', ['as' => 'interno.institucional.update', 'uses' => 'InstitucionalController@update']);
 Route::get('/interno/institucional/destroy/{id}', ['as' => 'interno.institucional.destroy', 'uses' => 'InstitucionalController@destroy']);
-
 
 //ALUNO
 Route::get('/interno/aluno', ['as' => 'interno.aluno.index', 'uses' => 'MaterialController@indexAluno']);
@@ -115,6 +118,25 @@ Route::get('/ajax-disciplina', function (){
     }
 
     return \Illuminate\Support\Facades\Response::json($disciplinas);
+});
+
+Route::get('/ajax-assunto', function (){
+
+    $dbAssunto = new Assunto();
+
+    $idDisciplina = Input::get('idDisciplina');
+    $idProfessor = Input::get('idProfessor');
+
+    if($idProfessor == 40000)
+    {
+        $assunto = $dbAssunto->where('idDisciplina',$idDisciplina)->get();
+    }
+    else
+    {
+        $assunto = $dbAssunto->where('idDisciplina',$idDisciplina)->get();
+    }
+
+    return \Illuminate\Support\Facades\Response::json($assunto);
 });
 
 Auth::routes();

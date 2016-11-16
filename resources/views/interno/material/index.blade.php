@@ -15,13 +15,18 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">
+                @if(isset($isProfessor))
+                    @if($isProfessor == 'S')
+                        <a href="{{ route('interno.material.createProfessor') }}">
+                            <img src="{{asset('backend/dist/img/add.png')}}" TITLE="INCLUIR MATERIAL">
+                        </a>
+                    @endif
+                @else
+                    <a href="{{ route('interno.material.create') }}">
+                        <img src="{{asset('backend/dist/img/add.png')}}" TITLE="INCLUIR MATERIAL">
+                    </a>
+                @endif
 
-                <a href="{{ route('interno.material.createPdf') }}">
-                    <img src="{{asset('backend/dist/img/pdf.png')}}" TITLE="ADICIONAR PDF">
-                </a>
-                <a href="{{ route('interno.material.createVideo') }}">
-                    <img src="{{asset('backend/dist/img/video.png')}}" TITLE="ADICIONAR VÍDEO">
-                </a>
             </h3>
         </div><!-- /.box-header -->
         <div class="box-body">
@@ -30,10 +35,8 @@
                     <thead>
                     <tr>
                         <th style="text-align: center;">AÇÃO</th>
-                        <th style="text-align: center;">DESCRIÇÃO</th>
-                        <th style="text-align: center;">TIPO</th>
+                        <th style="text-align: center;">ASSUNTO</th>
                         <th style="text-align: center;">TURMA - DISCIPLINA</th>
-                        <th style="text-align: center;">MATERIAL</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -45,19 +48,7 @@
                                 </a>
                             </td>
                             <td>{{$materiais->descricao}}</td>
-                            <td align="center">{{$materiais->tipoMaterial}}</td>
                             <td>{{$materiais->nomeTurma}} - {{$materiais->nomeDisciplina}}</td>
-                            <td align="center">
-                                @if($materiais->tipoMaterial == 'PDF')
-                                    <a href="../{{$materiais->material}}" target="_blank">
-                                        <img src="{{asset('backend/dist/img/pdf.png')}}" TITLE="BAIXAR" />
-                                    </a>
-                                @else
-                                    <img src="{{asset('backend/dist/img/video.png')}}" TITLE="VÍDEO" />
-                                @endif
-
-
-                            </td>
                         </tr>
                     @endforeach
                 </table>

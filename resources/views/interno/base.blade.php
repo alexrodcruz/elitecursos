@@ -158,8 +158,15 @@
                           <ul class="treeview-menu">
                               <li><a href="{{ route('interno.pessoas.index') }}"><i class="fa fa-circle-o"></i> Pessoa</a></li>
                               <li><a href="{{ route('interno.turma.index') }}"><i class="fa fa-circle-o"></i> Turma</a></li>
-                              <li><a href="{{ route('interno.disciplina.index') }}"><i class="fa fa-circle-o"></i> Disciplina</a></li>
+                              <li>
+                                  <a href="#"><i class="fa fa-circle-o"></i> Disciplina <i class="fa fa-angle-left pull-right"></i></a>
+                                  <ul class="treeview-menu">
+                                      <li><a href="{{ route('interno.disciplina.index') }}"><i class="fa fa-circle-o"></i> Disciplina</a></li>
+                                      <li><a href="{{ route('interno.assunto.index') }}"><i class="fa fa-circle-o"></i> Assunto</a></li>
+                                  </ul>
+                              </li>
                           </ul>
+
                       </li>
                       <li>
                           <a href="{{ route('interno.matricula.pre') }}">
@@ -178,13 +185,7 @@
                           </a>
                           <ul class="treeview-menu">
                               <li><a href="{{ route('interno.material.index') }}"><i class="fa fa-circle-o"></i> Consultar</a></li>
-                              <li>
-                                  <a href="#"><i class="fa fa-circle-o"></i> Enviar <i class="fa fa-angle-left pull-right"></i></a>
-                                  <ul class="treeview-menu">
-                                      <li><a href="{{ route('interno.material.createPdf')}}"><i class="fa fa-circle-o"></i> PDF</a></li>
-                                      <li><a href="{{ route('interno.material.createVideo')}}"><i class="fa fa-circle-o"></i> Vídeo</a></li>
-                                  </ul>
-                              </li>
+                              <li><a href="{{ route('interno.material.create') }}"><i class="fa fa-circle-o"></i> Cadastrar</a></li>
                           </ul>
                       </li>
                       <li class="treeview">
@@ -211,13 +212,7 @@
                           </a>
                           <ul class="treeview-menu">
                               <li><a href="{{ route('interno.material.indexProfessor') }}"><i class="fa fa-circle-o"></i> Consultar</a></li>
-                              <li>
-                                  <a href="#"><i class="fa fa-circle-o"></i> Enviar <i class="fa fa-angle-left pull-right"></i></a>
-                                  <ul class="treeview-menu">
-                                      <li><a href="{{ route('interno.material.createPdfProfessor')}}"><i class="fa fa-circle-o"></i> PDF</a></li>
-                                      <li><a href="{{ route('interno.material.createVideoProfessor')}}"><i class="fa fa-circle-o"></i> Vídeo</a></li>
-                                  </ul>
-                              </li>
+                              <li><a href="{{ route('interno.material.createProfessor') }}"><i class="fa fa-circle-o"></i> Cadastrar</a></li>
                           </ul>
                       </li>
                   </ul>
@@ -225,10 +220,29 @@
               @if( Auth::user()->isAluno == 1 )
                   <ul class="sidebar-menu">
                       <li class="header">MENU DE ACESSO - ALUNO</li>
-                      <li>
-                          <a href="{{ route('interno.aluno.index') }}">
+                      <li class="treeview">
+                          <a href="#">
                               <i class="fa fa-folder"></i> <span>Material Didático</span>
+                              <i class="fa fa-angle-left pull-right"></i>
                           </a>
+                          @if( isset($turmasAluno) )
+                              <ul class="treeview-menu">
+                                  <li>
+                                  @foreach($turmasAluno as $turmasAlunos)
+                                      <a href="#"><i class="fa fa-circle-o"></i> {{$turmasAlunos->nomeTurma}} <i class="fa fa-angle-left pull-right"></i></a>
+                                      <ul class="treeview-menu">
+                                      @foreach($disciplinaAluno as $disciplinaAlunos)
+                                          @if($turmasAlunos->nomeTurma == $disciplinaAlunos->nomeTurma)
+                                             <li><a href="{{ route('interno.aluno.index') }}?idDisciplina={{$disciplinaAlunos->idDisciplina}}&idTurma={{$disciplinaAlunos->idTurma}}"><i class="fa fa-circle-o"></i> {{$disciplinaAlunos->nomeDisciplina}}</a></li>
+                                          @endif
+                                      @endforeach
+                                      </ul>
+                                  @endforeach
+                                  </li>
+                              </ul>
+                          @else
+
+                          @endif
                       </li>
                   </ul>
               @endif
@@ -382,6 +396,30 @@
         })
 
       })
+    </script>
+    <script>
+        $('#idDisciplina').on('change',function(e){
+
+            console.log(e);
+
+            var idDisciplina = e.target.value
+            var idProfessor =  document.getElementById('idProfessor').value
+
+            //ajax
+            $.get('/ajax-assunto?idDisciplina='+idDisciplina+'&idProfessor='+idProfessor, function(data){
+
+                $('#idAssunto').empty();
+
+                $('#idAssunto').append('<option></option>')
+                $.each(data, function(index, assuntoObj){
+
+
+                    $('#idAssunto').append('<option value="'+assuntoObj.id+'">'+assuntoObj.descricao+'</option>')
+
+                });
+
+            })
+        })
     </script>
     <script>
         $(function () {

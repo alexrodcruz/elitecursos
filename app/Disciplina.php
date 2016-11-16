@@ -12,6 +12,7 @@ class Disciplina extends Model
                             'nome',
                             'cargaHoraria',
                             'idTurma',
-                            'idProfessor'
+                            'idProfessor',
+                            'sumario'
                         ];
 }

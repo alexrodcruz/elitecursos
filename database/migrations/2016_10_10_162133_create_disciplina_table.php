@@ -19,6 +19,7 @@ class CreateDisciplinaTable extends Migration
             $table->string('cargaHoraria');
             $table->integer('idTurma');
             $table->integer('idProfessor');
+            $table->longText('sumario');
             $table->timestamps();
         });
     }

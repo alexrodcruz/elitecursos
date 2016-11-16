@@ -49,6 +49,14 @@
                 {!! Form::text('cargaHoraria', isset($disciplina->cargaHoraria) ? $disciplina->cargaHoraria : NULL, ['class' => 'form-control']) !!}
             </div>
         </div>
+        <div class="row">
+            <div class="box-body pad" style="width: 1000px">
+                {!! Form::label('sumario', 'Sumário:') !!}
+                <textarea id="conteudo" name="sumario" rows="10" cols="80">
+                    {{isset($disciplina->sumario) ? $disciplina->sumario : NULL}}
+                </textarea>
+            </div>
+        </div>
         <div class="box-footer">
             <button type="submit" class="btn btn-primary">Salvar</button>
         </div>

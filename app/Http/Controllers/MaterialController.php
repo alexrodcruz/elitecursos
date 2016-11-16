@@ -25,8 +25,7 @@ class MaterialController extends Controller
     {
 
         $material = DB::select("SELECT A.id,
-                                       A.descricao,
-                                       A.tipoMaterial,
+                                       D.descricao,
                                        B.nome as nomeTurma,
                                        C.nome as nomeDisciplina,
                                        A.material
@@ -34,7 +33,9 @@ class MaterialController extends Controller
                             INNER JOIN turma B
                                     ON (A.idTurma = B.id)
                             INNER JOIN disciplina C 
-                                    ON (A.idDisciplina = C.id);");
+                                    ON (A.idDisciplina = C.id)
+                            INNER JOIN assunto D
+                                    ON (A.idAssunto = D.id);");
 
         $material['material'] = $material;
 
@@ -50,8 +51,7 @@ class MaterialController extends Controller
         $isProfessor = $idPessoa[0]->id;
 
         $material = DB::select("SELECT A.id,
-                                       A.descricao,
-                                       A.tipoMaterial,
+                                       D.descricao,
                                        B.nome as nomeTurma,
                                        C.nome as nomeDisciplina,
                                        A.material
@@ -60,9 +60,13 @@ class MaterialController extends Controller
                                     ON (A.idTurma = B.id)
                             INNER JOIN disciplina C 
                                     ON (A.idDisciplina = C.id)
+                            INNER JOIN assunto D
+                                    ON (A.idAssunto = D.id)
                                  WHERE C.idProfessor = $isProfessor;");
 
         $material['material'] = $material;
+
+        $material['isProfessor'] = 'S';
 
         return view('interno.material.index')->with($material);
     }
@@ -70,33 +74,53 @@ class MaterialController extends Controller
     public function indexAluno()
     {
 
+        $idDisciplina = $_GET['idDisciplina'];
+
+        $idTurma = $_GET['idTurma'];
+
         $email = Auth::user()->email;
 
         $idPessoa = DB::select("SELECT id FROM pessoas WHERE email = '$email';");
 
         $idAluno = $idPessoa[0]->id;
 
-        $material = DB::select("SELECT C.id,
-                                        C.descricao,
-                                        C.tipoMaterial,
-                                        B.nome as nomeTurma,
-                                        D.nome as nomeDisciplina,
-                                        C.material
-                                        FROM matricula A 
-                                        INNER JOIN turma B
-                                        ON(A.idTurma = B.id)
-                                        INNER JOIN material C
-                                        ON(A.idTurma = C.idTurma)
-                                        INNER JOIN disciplina D
-                                        ON(C.idDisciplina = D.id)
-                                        WHERE A.idAluno = $idAluno;");
+        $assunto = DB::select("SELECT A.id, A.descricao,A.sumario FROM assunto A WHERE A.idDisciplina = $idDisciplina;");
 
-        $material['material'] = $material;
+        $dados = DB::select("SELECT A.nome as nomeDisciplina, B.nome as nomeTurma, A.sumario FROM disciplina A INNER JOIN turma B ON(A.idTurma = B.id) WHERE A.id = $idDisciplina;");
+
+        $materialDidatico = DB::select("SELECT A.id, D.descricao, A.link, A.material, D.id as idAssunto FROM material A INNER JOIN matricula B ON(A.idTurma = B.id) INNER JOIN disciplina C ON(A.idDisciplina = C.id) INNER JOIN assunto D ON(A.idAssunto = D.id) WHERE A.idTurma = $idTurma AND A.idDisciplina = $idDisciplina;");
+
+        $material['assunto'] = $assunto;
+
+        $material['materialDidatico'] = $materialDidatico;
+
+        $material['dados'] = $dados;
+
+        $turma = DB::select("SELECT B.nome as nomeTurma
+                                  FROM matricula A 
+                                  INNER JOIN turma B 
+                                  ON (A.idTurma = B.id)
+                                  WHERE A.idAluno = $idAluno;");
+
+
+        $disciplinas = DB::select("SELECT B.nome as nomeTurma,
+                                          C.nome as nomeDisciplina,
+                                          C.id as idDisciplina,
+                                          B.id as idTurma
+                                  FROM matricula A 
+                                  INNER JOIN turma B 
+                                  ON (A.idTurma = B.id)
+                                  INNER JOIN disciplina C
+                                  ON (A.idTurma = C.idTurma) WHERE A.idAluno = $idAluno;");
+
+        $material['turmasAluno'] = $turma;
+
+        $material['disciplinaAluno'] = $disciplinas;
 
         return view('interno.aluno.index')->with($material);
     }
 
-    public function createPdf()
+    public function create()
     {
         $dbTurma = new Turma();
 
@@ -104,10 +128,11 @@ class MaterialController extends Controller
 
         $turma['turma'] = $dbTurma->where('dataFim','>=', $dataAtual)->where('dataFim','>=', $dataAtual)->get()->toArray();
 
-        return view('interno.material.createPdf ')->with($turma);
+        return view('interno.material.create ')->with($turma);
     }
 
-    public function createPdfProfessor()
+
+    public function createProfessor()
     {
         $email = Auth::user()->email;
 
@@ -124,51 +149,15 @@ class MaterialController extends Controller
                                         FROM disciplina A 
                                     INNER JOIN turma B 
                                     ON(A.idTurma = B.id)
-                                     WHERE A.idProfessor = $idProfessor 
+                                     WHERE A.idProfessor = $idProfessor
                                      GROUP BY B.id,B.nome;");
 
         $turma['idProfessor'] = $idProfessor;
 
-        return view('interno.material.createPdfProfessor ')->with($turma);
+        return view('interno.material.createProfessor ')->with($turma);
     }
 
-    public function createVideo()
-    {
-        $dbTurma = new Turma();
-
-        $dataAtual = Carbon::now()->format('Y-m-d');
-
-        $turma['turma'] = $dbTurma->where('dataFim','>=', $dataAtual)->where('dataFim','>=', $dataAtual)->get()->toArray();
-
-        return view('interno.material.createVideo ')->with($turma);
-    }
-
-    public function createVideoProfessor()
-    {
-        $email = Auth::user()->email;
-
-        $idPessoa = DB::select("SELECT id FROM pessoas WHERE email = '$email';");
-
-        $idProfessor = $idPessoa[0]->id;
-
-        $dbTurma = new Turma();
-
-        $dataAtual = Carbon::now()->format('Y-m-d');
-
-        $turma['turma'] = DB::select("SELECT B.id,
-                                            B.nome
-                                        FROM disciplina A 
-                                    INNER JOIN turma B 
-                                    ON(A.idTurma = B.id)
-                                     WHERE A.idProfessor = $idProfessor 
-                                     GROUP BY B.id,B.nome;");
-
-        $turma['idProfessor'] = $idProfessor;
-
-        return view('interno.material.createVideoProfessor')->with($turma);
-    }
-
-    public function storePdf(MaterialRequest $request)
+    public function store(MaterialRequest $request)
     {
         $dbMaterial = new Material();
 
@@ -200,8 +189,7 @@ class MaterialController extends Controller
         }
 
         $material = DB::select("SELECT A.id,
-                                       A.descricao,
-                                       A.tipoMaterial,
+                                        D.descricao,
                                        B.nome as nomeTurma,
                                        C.nome as nomeDisciplina,
                                        A.material
@@ -209,14 +197,17 @@ class MaterialController extends Controller
                             INNER JOIN turma B
                                     ON (A.idTurma = B.id)
                             INNER JOIN disciplina C 
-                                    ON (A.idDisciplina = C.id);");
+                                    ON (A.idDisciplina = C.id)
+                            INNER JOIN assunto D
+                                    ON (A.idAssunto = D.id);");
 
         $material['material'] = $material;
 
         return view('interno.material.index')->with($material);
     }
 
-    public function storePdfProfessor(MaterialRequest $request)
+
+    public function storeProfessor(MaterialRequest $request)
     {
         $dbMaterial = new Material();
 
@@ -251,11 +242,10 @@ class MaterialController extends Controller
 
         $idPessoa = DB::select("SELECT id FROM pessoas WHERE email = '$email';");
 
-        $isProfessor = $idPessoa[0]->id;
+        $idProfessor = $idPessoa[0]->id;
 
         $material = DB::select("SELECT A.id,
-                                       A.descricao,
-                                       A.tipoMaterial,
+                                        D.descricao,
                                        B.nome as nomeTurma,
                                        C.nome as nomeDisciplina,
                                        A.material
@@ -264,67 +254,9 @@ class MaterialController extends Controller
                                     ON (A.idTurma = B.id)
                             INNER JOIN disciplina C 
                                     ON (A.idDisciplina = C.id)
-                                 WHERE C.idProfessor = $isProfessor;");
-
-        $material['material'] = $material;
-
-        return view('interno.material.index')->with($material);
-
-    }
-
-    public function storeVideo(MaterialRequest $request)
-    {
-        $dbMaterial = new Material();
-
-        $dadosForm = $request->all();
-
-        $dbMaterial->create($dadosForm);
-
-
-        $material = DB::select("SELECT A.id,
-                                       A.descricao,
-                                       A.tipoMaterial,
-                                       B.nome as nomeTurma,
-                                       C.nome as nomeDisciplina,
-                                       A.material
-                                  FROM material A
-                            INNER JOIN turma B
-                                    ON (A.idTurma = B.id)
-                            INNER JOIN disciplina C 
-                                    ON (A.idDisciplina = C.id);");
-
-        $material['material'] = $material;
-
-        return view('interno.material.index')->with($material);
-    }
-
-
-    public function storeVideoProfessor(MaterialRequest $request)
-    {
-        $dbMaterial = new Material();
-
-        $dadosForm = $request->all();
-
-        $dbMaterial->create($dadosForm);
-
-        $email = Auth::user()->email;
-
-        $idPessoa = DB::select("SELECT id FROM pessoas WHERE email = '$email';");
-
-        $isProfessor = $idPessoa[0]->id;
-
-        $material = DB::select("SELECT A.id,
-                                       A.descricao,
-                                       A.tipoMaterial,
-                                       B.nome as nomeTurma,
-                                       C.nome as nomeDisciplina,
-                                       A.material
-                                  FROM material A
-                            INNER JOIN turma B
-                                    ON (A.idTurma = B.id)
-                            INNER JOIN disciplina C 
-                                    ON (A.idDisciplina = C.id)
-                                 WHERE C.idProfessor = $isProfessor;");
+                            INNER JOIN assunto D
+                                    ON (A.idAssunto = D.id)
+                                 WHERE C.idProfessor = $idProfessor ;");
 
         $material['material'] = $material;
 
@@ -335,11 +267,11 @@ class MaterialController extends Controller
     {
         $dbMaterial = new Material();
 
-        $materialTipo = DB::select("SELECT A.tipoMaterial, A.material FROM material A WHERE id = $id;");
+        $material = DB::select("SELECT A.material FROM material A WHERE id = $id;");
 
-        if ($materialTipo[0]->tipoMaterial == 'PDF')
+        if (isset($material[0]->material))
         {
-            unlink($materialTipo[0]->material);
+            unlink($material[0]->material);
 
             $dbMaterial->where(['id' => $id])->delete();
         }
@@ -349,8 +281,7 @@ class MaterialController extends Controller
         }
 
         $material = DB::select("SELECT A.id,
-                                       A.descricao,
-                                       A.tipoMaterial,
+                                       D.descricao,
                                        B.nome as nomeTurma,
                                        C.nome as nomeDisciplina,
                                        A.material
@@ -358,12 +289,13 @@ class MaterialController extends Controller
                             INNER JOIN turma B
                                     ON (A.idTurma = B.id)
                             INNER JOIN disciplina C 
-                                    ON (A.idDisciplina = C.id);");
+                                    ON (A.idDisciplina = C.id)
+                            INNER JOIN assunto D
+                                    ON (A.idAssunto = D.id);");
 
         $material['material'] = $material;
 
         return view('interno.material.index')->with($material);
-
 
     }
 

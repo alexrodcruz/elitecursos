@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MaterialRequest extends FormRequest
+class AssuntoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,16 @@ class MaterialRequest extends FormRequest
     public function rules()
     {
         return [
-            'idTurma' =>  'required',
-            'idDisciplina' =>  'required',
-            'idAssunto' => 'required',
-            'material' => 'required'
+            'descricao' => 'required',
+            'idDisciplina' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'idTurma.required' => 'Campo TURMA esta em Branco!',
+            'descricao.required' => 'Campo DESCRICAO esta em Branco!',
             'idDisciplina.required' => 'Campo DISCIPLINA esta em Branco!',
-            'idAssunto.required' => 'Campo ASSUNTO esta em Branco!',
-            'material.required' => 'Informe o LINK ou insira pelo menos 1(um) anexo!',
         ];
     }
 }
