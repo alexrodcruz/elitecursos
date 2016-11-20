@@ -38,7 +38,9 @@
                                 <div class="box-body">
                                     <font size="3"><?php echo $assuntos->sumario; ?> </font>
                                     <?php if(isset($materialDidatico[0]->link)): ?>
-                                        <iframe src="<?php echo e($materialDidatico[0]->link); ?>" width="640" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                        <?php if($assuntos->id == $materialDidatico[0]->idAssunto): ?>
+                                            <iframe src="<?php echo e($materialDidatico[0]->link); ?>" width="640" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                        <?php endif; ?>
                                     <?php else: ?>
                                         <font size="3">Nenhum vídeo incluído. </font>
                                     <?php endif; ?>
